@@ -1,5 +1,5 @@
 import { Bell, PersonStanding } from "lucide-react"
-import Input from "./input"
+// import Input from "./input"
 
 
 export default function Header() {
@@ -7,7 +7,7 @@ export default function Header() {
     <div className="bg-bg-secondary w-full
     flex justify-between items-center py-2 px-3 border-b border-b-border ">
       <div className="  w-1/2">
-        <Input />
+        {/* <Input /> */}
       </div>
 
       <div className="w-1/3  flex justify-center items-center ">
