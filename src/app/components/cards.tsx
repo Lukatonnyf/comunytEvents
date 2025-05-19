@@ -21,7 +21,7 @@ const Cards = ({ title, description, buttons = [], className = '' }: CardProps) 
       <main className="w-full  p-7  bg-amber-50 flex flex-col justify-center items-center ">
 
 
-        <div className={`${className} bg-bg-secondary w-full min-h-[35dvh]  h-full  flex flex-col
+        <div className={`${className} bg-bg-secondary w-full min-h-[40dvh]  h-full  flex flex-col
          py-5 px-4  rounded-2xl gap-5 sm:min-h-full sm:gap-2
          shadow-var-sm `}
         >

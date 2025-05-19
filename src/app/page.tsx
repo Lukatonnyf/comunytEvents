@@ -14,8 +14,6 @@ export default function Home() {
       <Header />
 
       <div className=" border   ">
-
-
         <Card title="Bem-vindo(a) de volta, User"
           className="md: w-2/3"
           description="Dia da semana, Dia(Num) mês e ano atual"
