@@ -37,8 +37,23 @@
 
 }
 
+.shadow-var-sm {
+  box-shadow: var(--shadow-sm);
+}
+@media (min-width: 768px) {
+  .shadow-var-sm {
+    box-shadow: var(--shadow-md);
+  }
+}
+@media (min-width: 1024px) {
+  .shadow-var-sm {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
 
 :root{
+
 
     .bg-gradient-45 {
   background: linear-gradient(

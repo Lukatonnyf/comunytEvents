@@ -5,6 +5,7 @@ import Card, { CardEvents } from "./components/cards";
 
 import { BiPlus, BiSolidCameraPlus, BiSolidEnvelope } from "react-icons/bi";
 import { ArrowRight } from "lucide-react";
+import AsideCard from "./components/asideCard";
 
 
 
@@ -12,8 +13,12 @@ export default function Home() {
   return (
     <div className="w-full h-screen   bg-bg-primary ">
       <Header />
-      <div className="p-5 border ">
+
+      <div className=" border   ">
+
+
         <Card title="Bem-vindo(a) de volta, User"
+          className="md: w-2/3"
           description="Dia da semana, Dia(Num) mês e ano atual"
           buttons={[
             {
@@ -42,7 +47,6 @@ export default function Home() {
 
           ]}
         />
-
         <section>
           <h1 className="w-full text-white  text-2xl  flex justify-between  mt-10">Proximos Eventos
             <span className=" flex items-center gap-1  text-sm  text-text-secondary">Ver Todos <ArrowRight className="size-5" /></span>
