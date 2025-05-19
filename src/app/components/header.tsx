@@ -26,7 +26,7 @@ export default function Header() {
       <div
         className={show ? "hidden" : "flex"}
         ref={testRef}
-      >mostroo</div>
+      >mostrooaa</div>
 
       <div className="w-1/3  flex justify-end items-center ">
         <ul className="flex justify-end  items-end gap-2 ">
