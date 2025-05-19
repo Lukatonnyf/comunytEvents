@@ -5,7 +5,6 @@ import Card, { CardEvents } from "./components/cards";
 
 import { BiPlus, BiSolidCameraPlus, BiSolidEnvelope } from "react-icons/bi";
 import { ArrowRight } from "lucide-react";
-import AsideCard from "./components/asideCard";
 
 
 
