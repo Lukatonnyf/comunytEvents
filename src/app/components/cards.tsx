@@ -1,4 +1,4 @@
-import AsideCard from "./asideCard";
+
 
 interface CardProps {
   title: string;
