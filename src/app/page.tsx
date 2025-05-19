@@ -1,10 +1,9 @@
 'use client';
+import AsideCard from "./components/asideCard";
 import Header from "./components/header";
-import Card, { CardEvents } from "./components/cards";
 
 
-import { BiPlus, BiSolidCameraPlus, BiSolidEnvelope } from "react-icons/bi";
-import { ArrowRight } from "lucide-react";
+import HomePage from "./components/home";
 
 
 
@@ -13,44 +12,9 @@ export default function Home() {
     <div className="w-full h-screen   bg-bg-primary ">
       <Header />
 
-      <div className=" border   ">
-        <Card title="Bem-vindo(a) de volta, User"
-          className="md: w-2/3"
-          description="Dia da semana, Dia(Num) mês e ano atual"
-          buttons={[
-            {
-              text: (
-                <span className="flex sm:justify-center items-center gap-2 ">
-                  < BiPlus className="w-4 h-4" /> Criar Evento
-                </span>
-              ),
-              className: "text-start bg-gradient-45 text-white hover:bg-bg-primary"
-            },
-            {
-              text: (
-                <span className="flex sm:justify-center items-center gap-2 ">
-                  <BiSolidEnvelope className="w-4 h-4 " /> Enviar Convite
-                </span>
-              ),
-              className: "bg-bg-tertiary text-sm   hover:bg-bg-primary"
-            },
-            {
-              text: (
-                <span className="flex sm:justify-center items-center gap-2 ">
-                  <BiSolidCameraPlus className="w-4 h-4" /> Compartilhar Fotos
-                </span>
-              ), className: "text-start  text-white r bg-bg-tertiary text-sm text-white hover:bg-bg-primary"
-            },
-
-          ]}
-        />
-        <section>
-          <h1 className="w-full text-white  text-2xl  flex justify-between  mt-10">Proximos Eventos
-            <span className=" flex items-center gap-1  text-sm  text-text-secondary">Ver Todos <ArrowRight className="size-5" /></span>
-          </h1>
-
-          <CardEvents />
-        </section>
+      <div className=" border  flex flex-wrap ">
+        <AsideCard className="md:min-w-[5dvw] md:flex-1 " />
+        <HomePage className="md:flex-3 md:min-w-[300px] " />
 
       </div>
     </div >

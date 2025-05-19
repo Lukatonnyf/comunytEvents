@@ -18,7 +18,7 @@ const Cards = ({ title, description, buttons = [], className = '' }: CardProps) 
   return (
     <div className="flex flex-row  ">
 
-      <main className="w-full  p-[30px] bg-amber-50 flex flex-col justify-center items-center ">
+      <main className="w-full  bg-amber-50 flex flex-col justify-center items-center ">
 
 
         <div className={`${className} bg-bg-secondary w-full    flex flex-col

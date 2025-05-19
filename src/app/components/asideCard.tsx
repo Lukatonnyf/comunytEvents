@@ -1,7 +1,10 @@
-export default function AsideCard() {
+interface AsideCardProps {
+  className?: string;
+}
+export default function AsideCard({ className }: AsideCardProps) {
   return (
 
-    <aside className=" hidden  sm:flex sm:w-[17dvw]  h-full  bg-indigo-200">
+    <aside className={` ${className} hidden   sm:flex w-[16.666vw] h-full  bg-indigo-200`}>
       aaaaaaaaaaa
     </aside>
   )
