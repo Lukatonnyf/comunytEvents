@@ -18,16 +18,16 @@ const Cards = ({ title, description, buttons = [], className = '' }: CardProps) 
   return (
     <div className="flex flex-row  ">
 
-      <main className="w-full  md:p-8 md:pr-7 bg-amber-50 flex flex-col justify-center items-center ">
+      <main className="w-full  p-[30px] bg-amber-50 flex flex-col justify-center items-center ">
 
 
-        <div className={`${className} bg-bg-secondary w-full min-h-[50dvh]  h-full  flex flex-col
-         py-5 px-4  rounded-2xl gap-5 sm:min-h-full sm:gap-2
+        <div className={`${className} bg-bg-secondary w-full    flex flex-col
+         py-5 px-4  rounded-2xl
          shadow-var-sm `}
         >
-          <div className="flex flex-col gap-3 sm:gap-2">
-            <h1 className="text-white text-3xl font-bold">{title}</h1>
-            <p className="text-gray-400 text-lg">{description}</p>
+          <div className="flex flex-col mb-[20px] ">
+            <h1 className="text-white text-[1.8rem] font-bold mb-[5px]">{title}</h1>
+            <p className="text-gray-400 text-[1rem]">{description}</p>
           </div>
 
           <div className="flex flex-col flex-wrap gap-4 mt-4 sm:flex-row ">
