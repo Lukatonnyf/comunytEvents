@@ -13,8 +13,8 @@ export default function Home() {
       <Header />
 
       <div className=" border  flex flex-wrap ">
-        <AsideCard className="md:min-w-[5dvw] md:flex-1 " />
-        <HomePage className="md:flex-3 md:min-w-[300px] " />
+        <AsideCard className="md:min-w-[16dvw] md:flex-1 " />
+        <HomePage className="md:flex-5 md:min-w-[300px] " />
 
       </div>
     </div >
