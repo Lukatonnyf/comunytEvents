@@ -16,9 +16,9 @@ interface CardProps {
 
 const Cards = ({ title, description, buttons = [], className = '' }: CardProps) => {
   return (
-    <div className="flex flex-row  gap-2">
+    <div className="flex flex-row  ">
       <AsideCard />
-      <main className="w-full   bg-amber-50 flex flex-col justify-center items-center ">
+      <main className="w-full  p-5  bg-amber-50 flex flex-col justify-center items-center ">
 
 
         <div className={`${className} bg-bg-secondary w-full min-h-[35dvh]  h-full  flex flex-col
@@ -26,7 +26,7 @@ const Cards = ({ title, description, buttons = [], className = '' }: CardProps) 
          shadow-var-sm `}
         >
           <div className="flex flex-col gap-3 sm:gap-2">
-            <h1 className="text-white text-4xl font-bold">{title}</h1>
+            <h1 className="text-white text-3xl font-bold">{title}</h1>
             <p className="text-gray-400 text-lg">{description}</p>
           </div>
 
