@@ -31,7 +31,7 @@ export default function Home() {
             {
               text: (
                 <span className="flex sm:justify-center items-center gap-2 ">
-                  <BiSolidEnvelope className="w-4 h-4 " /> Criar Evento
+                  <BiSolidEnvelope className="w-4 h-4 " /> Enviar Convite
                 </span>
               ),
               className: "bg-bg-tertiary text-sm   hover:bg-bg-primary"
@@ -39,7 +39,7 @@ export default function Home() {
             {
               text: (
                 <span className="flex sm:justify-center items-center gap-2 ">
-                  <BiSolidCameraPlus className="w-4 h-4" /> Criar Evento
+                  <BiSolidCameraPlus className="w-4 h-4" /> Compartilhar Fotos
                 </span>
               ), className: "text-start  text-white r bg-bg-tertiary text-sm text-white hover:bg-bg-primary"
             },

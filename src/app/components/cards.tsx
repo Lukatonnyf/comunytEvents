@@ -36,7 +36,7 @@ const Cards = ({ title, description, buttons = [], className = '' }: CardProps) 
                 key={i}
                 onClick={btn.onClick}
                 className={`${[btn.className]}  text-start text-sm font-medium   text-white rounded-3xl
-              py-3 px-7  sm:py-3 sm:px-3
+              py-3 px-7  sm:py-3 sm:px-5
               sm:flex sm:justify-center sm:items-center sm:text-sm`}>
                 {btn.text}
               </button>
