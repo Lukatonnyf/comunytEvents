@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <div className="bg-bg-secondary w-full
-    flex justify-between items-center py-3 px-3 border-b border-b-border sm:px-10">
+    flex justify-between items-center py-4 px-3 border-b border-b-border sm:px-10">
       <div className="  w-1/2">
         {/* <Input /> */}
       </div>
