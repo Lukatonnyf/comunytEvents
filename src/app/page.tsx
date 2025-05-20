@@ -9,14 +9,16 @@ import HomePage from "./components/home";
 
 export default function Home() {
   return (
-    <div className="w-full h-screen   bg-bg-primary ">
+    <div className="w-full h-screen  overflow-y-hidden bg-bg-primary flex flex-col">
       <Header />
 
-      <div className=" border  flex flex-wrap ">
-        <AsideCard className="md:min-w-[20.83vw] md:flex-1 " />
-        <HomePage className="md:flex-6 md:min-w-[300px] " />
+      <div className="   flex flex-1 overflow-hidden  ">
+        <AsideCard className=" md:flex-1  " />
+        <HomePage className="md:flex-[6] overflow-y-auto h-full" />
 
       </div>
+
+
     </div >
   );
 }

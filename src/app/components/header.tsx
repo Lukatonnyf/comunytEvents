@@ -17,7 +17,7 @@ export default function Header() {
   }, [show])
 
   return (
-    <div className="bg-bg-secondary w-full
+    <div className="bg-bg-secondary w-full relative z-10
     flex justify-between items-center py-4 px-3 border-b border-b-border sm:px-10">
       <div className="  w-1/2">
         {/* <Input /> */}

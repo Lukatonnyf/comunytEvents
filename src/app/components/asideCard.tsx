@@ -1,10 +1,12 @@
+
 interface AsideCardProps {
   className?: string;
 }
 export default function AsideCard({ className }: AsideCardProps) {
   return (
 
-    <aside className={` ${className} hidden   sm:flex w-[16.666vw] h-full  bg-indigo-200`}>
+    <aside className={` ${className} hidden  relative z-20 bg-bg-secondary md:flex w-[16.666vw] min-h-screen
+     h-full  border-r  border-r-border`}>
       aaaaaaaaaaa
     </aside>
   )

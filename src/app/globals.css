@@ -50,6 +50,12 @@
     box-shadow: var(--shadow-lg);
   }
 }
+ .buttonsHovercustomer{
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    transition: all var(--transition-speed) ease-in-out;
+  }
+
 
 
 :root{

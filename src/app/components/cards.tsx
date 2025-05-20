@@ -1,4 +1,7 @@
+"use client";
 
+import { useState } from "react";
+// import texts
 
 interface CardProps {
   title: string;
@@ -15,17 +18,16 @@ interface CardProps {
 
 
 const Cards = ({ title, description, buttons = [], className = '' }: CardProps) => {
+  const [onMouse, setOnmoue] = useState<number | null>(null);
+
   return (
-    <div className="flex flex-row  ">
+    <div className="flex flex-row">
 
-      <main className="w-full  bg-amber-50 flex flex-col justify-center items-center ">
+      <main className="w-full flex flex-col justify-center items-center ">
 
-
-        <div className={`${className} bg-bg-secondary w-full    flex flex-col
-         py-5 px-4  rounded-2xl
-         shadow-var-sm `}
-        >
-          <div className="flex flex-col mb-[20px] ">
+        <div className={`${className} bg-bg-secondary w-full  flex flex-col
+         py-5 px-4 rounded-2xl shadow-var-sm `}>
+          <div className="flex flex-col mb-[18px]">
             <h1 className="text-white text-[1.8rem] font-bold mb-[5px]">{title}</h1>
             <p className="text-gray-400 text-[1rem]">{description}</p>
           </div>
@@ -35,9 +37,13 @@ const Cards = ({ title, description, buttons = [], className = '' }: CardProps) 
               <button
                 key={i}
                 onClick={btn.onClick}
-                className={`${[btn.className]}  text-start text-sm font-medium   text-white rounded-3xl
-              py-3 px-7  sm:py-3 sm:px-5
-              sm:flex sm:justify-center sm:items-center sm:text-sm`}>
+                className={`${[btn.className]}  text-start text-sm font-medium text-white rounded-3xl
+              py-3 px-7
+              sm:py-3 sm:px-5  sm:flex sm:justify-center sm:items-center sm:text-sm
+              transition-all duration-300 hover:-translate-y-[2px]
+              ${onMouse === i ? 'shadow-lg' : ''}`}
+                onMouseEnter={() => setOnmoue(i)}
+                onMouseLeave={() => setOnmoue(null)}>
                 {btn.text}
               </button>
             ))}
@@ -45,7 +51,7 @@ const Cards = ({ title, description, buttons = [], className = '' }: CardProps) 
         </div>
 
       </main >
-    </div>
+    </div >
   );
 };
 
@@ -54,9 +60,19 @@ const Cards = ({ title, description, buttons = [], className = '' }: CardProps) 
 // Card DOS EVENTOS
 const CardEvents = () => {
   return (
-    <div className="w-full  flex flex-col justify-center items-center ">
-      <div className="bg-bg-secondary w-full min-h-[35dvh]  h-full  flex flex-col
-         py-5 px-4  rounded-2xl gap-5 sm:min-h-full sm:gap-2">
+    <div className="w-full  flex flex-col justify-center  py-5 ">
+      <div className=" w-full  flex
+         rounded-2xl gap-5 sm:min-h-full sm:gap-2">
+
+        <Cards title="Bem-vindo(a) de volta, User"
+          description="Dia da semana, Dia(Num) mês e ano atual"
+          className="  max-w-[17dvw] h-[35dvh] border-l-3 border-l-gradient-middle" />
+        <Cards title="Bem-vindo(a) de volta, User"
+          description="Dia da semana, Dia(Num) mês e ano atual"
+          className="   max-w-[17dvw] h-[35dvh] " />
+        <Cards title="Bem-vindo(a) de volta, User"
+          description="Dia da semana, Dia(Num) mês e ano atual"
+          className="  max-w-[17dvw] h-[35dvh] " />
       </div>
     </div>
   )
