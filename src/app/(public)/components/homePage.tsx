@@ -8,7 +8,6 @@ import Button from "@/ui/button";
 import { useState } from "react";
 
 export default function HomePage({ className }: { className: string }) {
-  const [onMouse, setOnMouse] = useState<number | null>(null);
   return (
 
     <div className={`${className} w-full bg-bg-primary p-[30px]`}	>
