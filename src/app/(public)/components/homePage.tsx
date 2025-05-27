@@ -19,7 +19,7 @@ export default function HomePage({ className }: { className: string }) {
     <div className={`${className}
     w-full bg-bg-primary p-[30px]`}	>
       <Card>
-        <div className="flex flex-col mb-[18px] text-start  ">
+        <div className="flex flex-col mb-[12px] text-start  ">
           <h1 className={`text-[1.8em] ${poppins.className} font-bold tracking-wide mb-[5px]   origin-left `}>
             Bem-vindo(a) de volta, User!
           </h1>

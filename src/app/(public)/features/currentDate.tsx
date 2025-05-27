@@ -23,7 +23,7 @@ const DateCurrent = () => {
   }, [])
 
   return (
-    <div className="flex flex-col justify-center items-baseline">
+    <div>
       <p className={`dark:text-gray-400 text-[0.95rem] ${poppins.className} font-extalight`}>
         {date}</p >
     </div>
