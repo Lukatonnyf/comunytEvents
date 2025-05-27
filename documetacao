@@ -1,0 +1,32 @@
+Documentação das Variáveis CSS de Cor
+Variável CSS	O que representa / onde usar	Descrição detalhada
+--radius ==>	Raio de borda padrão	Define o arredondamento das bordas (ex: botões, cards, inputs).
+--background  ==>		Cor de fundo geral do app	Cor principal do fundo da página (body).
+--foreground ==>		Cor principal do texto	Cor padrão do texto em fundos claros ou escuros.
+--card  ==>		Fundo dos componentes tipo card	Fundo de cards, painéis e caixas destacadas.
+--card-foreground  ==>		Cor do texto dentro dos cards	Texto usado dentro dos cards, geralmente contrastante com o fundo.
+--popover  ==>		Fundo dos popovers (tooltips, dropdowns, etc)	Fundo de elementos flutuantes como menus e tooltips.
+--popover-foreground  ==>		Cor do texto dentro dos popovers	Cor do texto ou ícones dentro dos popovers.
+--primary  ==>		Cor principal para elementos interativos (botões)	Cor usada em botões primários, links principais e elementos ativos.
+--primary-foreground  ==>		Cor do texto sobre elementos primary	Cor do texto ou ícones sobre botões e elementos primários.
+--secondary	 ==>	 Cor secundária para elementos de UI	Fundo ou destaque secundário, como botões secundários ou menus.
+--secondary-foreground  ==>		Cor do texto sobre elementos secondary	Texto para elementos com fundo secundário.
+--muted	 ==>	 Cor de fundo ou texto "suave" ou desativado	Usado para informações menos importantes, placeholders, etc.
+--muted-foreground  ==>		Cor do texto para elementos muted	Texto suave ou menos destacado.
+--accent  ==>		Cor de destaque/acento	Cor usada para chamar atenção em partes específicas (ícones, badges)
+--accent-foreground	 ==>	Cor do texto sobre elementos accent	Texto para elementos com fundo de destaque/acento.
+--destructive ==>		Cor para estados de erro ou destrutivos	Usado para alertas, erros, botões de exclusão, etc.
+--border  ==>		Cor das bordas gerais	Cor usada nas bordas de inputs, cards, menus, etc.
+--input	 ==>	Cor do fundo ou borda de inputs	Normalmente igual à borda para inputs e áreas de formulário.
+--ring ==>		Cor do foco (outline) nos elementos interativos	Cor do efeito de foco em inputs e botões (quando estão selecionados).
+
+Exemplos no site:
+Fundo do corpo: background: var(--background);
+
+Texto padrão: color: var(--foreground);
+
+Botão primário: background-color: var(--primary); color: var(--primary-foreground);
+
+Card: background-color: var(--card); color: var(--card-foreground);
+
+Input com foco: outline-color: var(--ring);
