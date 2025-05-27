@@ -19,7 +19,7 @@ export default function HomePage({ className }: { className: string }) {
     <div className={`${className}
     w-full bg-bg-primary p-[30px]`}	>
       <Card>
-        <div className="flex flex-col mb-[12px] text-start  ">
+        <div className="flex flex-col mb-[5px] text-start  ">
           <h1 className={`text-[1.8em] ${poppins.className} font-bold tracking-wide mb-[5px]   origin-left `}>
             Bem-vindo(a) de volta, User!
           </h1>
@@ -27,7 +27,7 @@ export default function HomePage({ className }: { className: string }) {
         </div>
 
 
-        <div className="flex flex-col flex-wrap gap-4 mt-2 sm:flex-row ">
+        <div className="flex flex-col flex-wrap gap-4 mt-4 sm:flex-row ">
           <Button className="bg-gradient-45 text-white ">
             <span className="flex sm:justify-center  items-center gap-2 ">
               <BiPlus className={`w-4 h-4 ${poppins.className} font-light`} /> Criar Evento
@@ -46,13 +46,13 @@ export default function HomePage({ className }: { className: string }) {
             </span>
           </Button>
         </div>
-      </Card >
-
-      < section >
-        <h1 className="w-full   text-2xl  flex justify-between  mt-10
-        mb-5">
+      </Card>
+      <section>
+        <h1 className="w-full px-1  text-2xl  flex justify-between mt-10 mb-5">
           Proximos Eventos
-          <span className=" flex items-center gap-1  text-sm  text-primary">
+          <span className=" flex items-center gap-1 text-sm text-text-secondary
+            transition-all duration-300   hover:text-txttertiary-hover
+">
             Ver Todos <ArrowRight className="size-5" /></span>
         </h1>
 
