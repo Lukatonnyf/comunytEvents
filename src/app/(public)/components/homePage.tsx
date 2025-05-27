@@ -1,11 +1,9 @@
-'use client';
 
 // import Card, { CardEvents } from "./card";
 import { BiPlus, BiSolidCameraPlus, BiSolidEnvelope } from "react-icons/bi";
 import { ArrowRight } from "lucide-react";
 import Card from "@/ui/Cards";
 import Button from "@/ui/button";
-import { useState } from "react";
 
 export default function HomePage({ className }: { className: string }) {
   return (
