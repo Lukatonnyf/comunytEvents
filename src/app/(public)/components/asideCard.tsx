@@ -10,4 +10,7 @@ export default function AsideCard({ className }: AsideCardProps) {
       aaaaaaaaaaa
     </aside>
   )
+
 }
+
+

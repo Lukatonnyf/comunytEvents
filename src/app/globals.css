@@ -1,11 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
 /* ✅ Suporte a modo escuro customizado */
 @custom-variant dark (&:is(.dark *));
 
 /* 🌞 MODO CLARO - padrão */
 :root {
+
+
   /* 🔷 Fundo e texto base */
   --color-bg-primary: #f5f5f5;           /* Fundo principal */
   --color-bg-secondary: #E5E5E7;         /* Fundo secundário (cartões, sidebar) */
