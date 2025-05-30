@@ -9,7 +9,7 @@ const poppins = Poppins({
 })
 // import Card, { CardEvents } from "./card";
 import { BiPlus, BiSolidCameraPlus, BiSolidEnvelope } from "react-icons/bi";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, EllipsisVertical, Locate, MapPin, Share2, SquarePen, User } from "lucide-react";
 import Card from "@/ui/Cards";
 import Button from "@/ui/button";
 import DateCurrent from '../features/currentDate';
@@ -18,7 +18,7 @@ export default function HomePage({ className }: { className: string }) {
   return (
     <div className={`${className}
     w-full bg-bg-primary p-[30px]`}	>
-      <Card>
+      <Card className=' w-full pb-5 px-5  pt-6  '>
         <div className="flex flex-col mb-[5px] text-start  ">
           <h1 className={`text-[1.8em] ${poppins.className} font-bold tracking-wide mb-[5px]   origin-left `}>
             Bem-vindo(a) de volta, User!
@@ -35,19 +35,22 @@ export default function HomePage({ className }: { className: string }) {
           </Button>
 
           <Button>
-            <span className="flex sm:justify-center items-center gap-2 ">
+            <span className="flex sm:justify-center items-center gap-2 font-normal">
               <BiSolidEnvelope className={`w-4 h-4 ${poppins.className} font-medium`} /> Enviar Convites
             </span>
           </Button>
 
           <Button className="bg-secondary">
-            <span className="flex sm:justify-center items-center gap-2 ">
+            <span className="flex sm:justify-center items-center gap-2  font-normal ">
               < BiSolidCameraPlus className={`w-4 h-4 ${poppins.className} font-medium`} /> Compartilhar Fotos
             </span>
           </Button>
         </div>
       </Card>
-      <section>
+
+
+
+      <section className='w-full '>
         <h1 className="w-full px-1  text-2xl  flex justify-between mt-10 mb-5">
           Proximos Eventos
           <span className=" flex items-center gap-1 text-sm text-text-secondary
@@ -56,7 +59,88 @@ export default function HomePage({ className }: { className: string }) {
             Ver Todos <ArrowRight className="size-5" /></span>
         </h1>
 
-        {/* <CardEvents /> */}
+        <div className='flex  flex-row flex-wrap gap-5'>
+          <Card className='w-full lg:max-w-[19rem] border-l-4 border-bordercustomizada h-[39dvh] bg-secondary p-0 flex flex-col justify-between pb-2'>
+            <div className='flex flex-col rounded-t-xl justify-center items-center bg-tertiary h-[15dvh] mb-1'>
+              <h1 className='font-bold  text-3xl'>20</h1>
+              <p>MAI</p>
+            </div>
+
+            <section className='flex  flex-col h-full'>
+              <main className=' flex flex-col justify-between p-3 h-full   '>
+                <h1 className='font-bold text-xl'>Aniversario do Jão</h1>
+                <ul className=' text-text-secondary'>
+                  <li className='flex  items-center  '><Clock className='h-4' />19:00 - 23:00</li>
+                  <li className='flex  items-center  '><MapPin className='h-4' />Restaurante Sabor & Arte</li>
+                  <li className='flex  items-center  '><User className='h-4 ' />Criado por: Tonny Ferreira</li>
+                </ul>
+
+                <div className='flex flex-row gap-2'>
+                  <button ><SquarePen className='p-2 rounded-full  size-8  bg-tertiary' /></button>
+                  <button ><Share2 className='p-2 rounded-full  size-8  bg-tertiary' /></button>
+                  <button ><EllipsisVertical className='p-2 rounded-full  size-8  bg-tertiary' /></button>
+                </div>
+
+              </main>
+              <footer className='flex justify-between  border-t   p-3'>
+                <p> imagens...</p>
+                <span className='text-green-700'>8 Confirmados...</span>
+              </footer>
+            </section>
+          </Card>
+
+          <Card className='w-full lg:max-w-[19rem]  h-[39dvh] bg-secondary p-0 flex flex-col justify-between pb-2'>
+            <div className='flex rounded-xl justify-center items-center bg-tertiary h-[20dvh]'>
+              teste
+            </div>
+
+            <section className='px-2 h-full'>
+              <h1>Aniversario do Jão</h1>
+              <ul>
+                <li>19:00 - 23:00</li>
+                <li>Restaurante Sabor & Arte</li>
+                <li>Criado por: Tonny Ferreira</li>
+              </ul>
+
+              <div>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+              </div>
+
+              <footer>
+                <p>              imagens...</p>
+                8 confirmados
+              </footer>
+            </section>
+          </Card>
+
+          <Card className='w-full lg:max-w-[19rem] h-[39dvh] bg-secondary p-0 flex flex-col justify-between pb-2'>
+            <div className='flex rounded-xl justify-center items-center bg-tertiary h-[20dvh]'>
+              teste
+            </div>
+
+            <section className='px-2 h-full'>
+              <h1>Aniversario do Jão</h1>
+              <ul>
+                <li>19:00 - 23:00</li>
+                <li>Restaurante Sabor & Arte</li>
+                <li>Criado por: Tonny Ferreira</li>
+              </ul>
+
+              <div>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+              </div>
+
+              <footer>
+                <p>              imagens...</p>
+                8 confirmados
+              </footer>
+            </section>
+          </Card>
+        </div>
 
 
       </section >

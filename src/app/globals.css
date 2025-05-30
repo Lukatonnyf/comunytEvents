@@ -9,7 +9,9 @@
   /* 🎨 Cores de texto */
   --color-text-primary: #121212;                    /* Cor principal de texto */
   --color-text-secondary: #121212;                  /* Cor secundária de texto */
-  --color-text-tertiary-hover: #B91372;              /* Cor terciária para textos menores/destaques */
+  --color-text-tertiary-hover: #B91372;
+
+
 
   /* 🔷 Cores de fundo */
   --color-bg-primary: #f5f5f5;                      /* Fundo principal do site */
@@ -22,7 +24,8 @@
   --color-gradient-end: #A01A58;                    /* Fim do gradiente */
 
   /* 🟢 Estados e bordas */
-  --color-border: #000;                             /* Cor padrão das bordas */
+  --color-border: #000;
+  --color-bdcustomizada: #BA1674;                             /* Cor padrão das bordas */
   --color-success: #2E7D32;                         /* Verde para status de sucesso */
   --color-error: #C62828;                           /* Vermelho para erros */
 
@@ -38,7 +41,7 @@
   /* ☁️ Sombras */
   --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.3);         /* Sombra pequena */
   --shadow-md: 0 10px 24px rgba(0, 0, 0, 0.4);       /* Sombra média */
-  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.6);       /* Sombra grande */
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
 
   /* 🎯 Integração shadcn/ui */
   --radius: 0.625rem;                               /* Raio base utilizado por componentes */
@@ -128,6 +131,7 @@
   --color-tertiary: var(--tertiary);                 /* Terciário */
   --color-text-secondary: var(--color-text-secondary); /* Texto muted */
   --color-border: var(--border);                     /* Borda */
+  --color-bordercustomizada: var(--color-bdcustomizada);
   --color-ring: var(--ring);                         /* Anel foco */
 
 
