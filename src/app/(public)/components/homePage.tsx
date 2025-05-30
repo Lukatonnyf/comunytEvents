@@ -9,7 +9,7 @@ const poppins = Poppins({
 })
 // import Card, { CardEvents } from "./card";
 import { BiPlus, BiSolidCameraPlus, BiSolidEnvelope } from "react-icons/bi";
-import { ArrowRight, Clock, EllipsisVertical, Locate, MapPin, Share2, SquarePen, User } from "lucide-react";
+import { ArrowRight, Clock, EllipsisVertical, MapPin, Share2, SquarePen, User } from "lucide-react";
 import Card from "@/ui/Cards";
 import Button from "@/ui/button";
 import DateCurrent from '../features/currentDate';
