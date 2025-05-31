@@ -14,7 +14,8 @@ type FormWrapperProps<T extends FieldValues> = {
   className?: string;
 };
 
-export function FormWrapper<T extends Record<string, any>>({
+export function FormWrapper<T extends FieldValues>({
+
   defaultValues,
   onSubmit,
   children,
