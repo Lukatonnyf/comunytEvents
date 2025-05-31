@@ -26,7 +26,7 @@ export default function HomePage({ className }: { className: string }) {
 
   return (
     <div className={`${className}
-    w-full h-screen bg-bg-primary p-[30px]`}	>
+    w-full h-full min-h-0 bg-bg-primary p-[30px]`}	>
       <Card className=' w-full pb-5 px-5  pt-6 '>
         <div className="flex flex-col mb-[5px] text-start  ">
           <h1 className={`text-[1.8em] ${poppins.className} font-bold tracking-wide mb-[5px]   origin-left `}>
