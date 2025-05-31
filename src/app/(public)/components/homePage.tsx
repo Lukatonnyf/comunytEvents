@@ -26,7 +26,7 @@ export default function HomePage({ className }: { className: string }) {
 
   return (
     <div className={`${className}
-    w-full bg-bg-primary p-[30px]`}	>
+    w-full h-full bg-bg-primary p-[30px]`}	>
       <Card className=' w-full pb-5 px-5  pt-6 '>
         <div className="flex flex-col mb-[5px] text-start  ">
           <h1 className={`text-[1.8em] ${poppins.className} font-bold tracking-wide mb-[5px]   origin-left `}>
@@ -75,7 +75,7 @@ export default function HomePage({ className }: { className: string }) {
           <Card className='w-full md:w-[100rem] lg:max-w-[19rem] border-l-4 border-bordercustomizada h-full max-h-[39dvh]
           bg-secondary p-0 flex flex-col justify-between pb-4 '>
             <div className='flex flex-col rounded-t-xl justify-center items-center bg-tertiary  h-[15dvh]  '>
-              <h1 className='font-bold  text-3xl'>20</h1>
+              <h1 className='font-bold  text-3xl'>22</h1>
               <p>MAI</p>
             </div>
             {/* lg:h-[15dvh] */}

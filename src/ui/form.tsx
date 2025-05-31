@@ -24,7 +24,7 @@ const Form = ({ showForm }: FormularioProps) => {
       defaultValues={{ nome: "", email: "" }}
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center
-      fixed  top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2
+      fixed  top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 z-50
       w-6/7  lg:w-[35rem] p-5 gap-5 bg-secondary rounded-xl
       "
     >
