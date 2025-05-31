@@ -25,7 +25,7 @@ const Form = ({ showForm }: FormularioProps) => {
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center
       fixed  top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2
-      w-[35rem] p-5 gap-5 bg-secondary rounded-xl
+      w-6/7  lg:w-[35rem] p-5 gap-5 bg-secondary rounded-xl
       "
     >
       {({ register }) => (
@@ -50,7 +50,7 @@ const Form = ({ showForm }: FormularioProps) => {
               />
             </label>
 
-            <label className="w-full flex flex-col gap-2">Horário
+            <label className="w-[20dvw] flex flex-col gap-2">Horário
               <input
                 {...register("email")}
                 placeholder=""
