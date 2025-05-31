@@ -75,7 +75,7 @@ export default function HomePage({ className }: { className: string }) {
           <Card className='w-full md:w-[100rem] lg:max-w-[19rem] border-l-4 border-bordercustomizada h-[22rem]
           bg-secondary p-0 flex flex-col justify-between pb-4 '>
             <div className='flex flex-col rounded-t-xl justify-center items-center bg-tertiary  h-[15dvh]  '>
-              <h1 className='font-bold  text-3xl'>22</h1>
+              <h1 className='font-bold  text-3xl'>25</h1>
               <p>MAI</p>
             </div>
             {/* lg:h-[15dvh] */}
