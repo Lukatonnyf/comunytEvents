@@ -62,16 +62,16 @@ export default function HomePage({ className }: { className: string }) {
         <div className='flex  flex-row flex-wrap gap-5'>
           <Card className='w-full md:w-[100rem] lg:max-w-[19rem] border-l-4 border-bordercustomizada h-full max-h-[39dvh]
           bg-secondary p-0 flex flex-col justify-between pb-4 gap-3'>
-            <div className='flex flex-col rounded-t-xl justify-center items-center bg-tertiary  h-[10dvh]  mb-1'>
+            <div className='flex flex-col rounded-t-xl justify-center items-center bg-tertiary  h-[10dvh]  '>
               <h1 className='font-bold  text-3xl'>20</h1>
               <p>MAI</p>
             </div>
             {/* lg:h-[15dvh] */}
 
             <section className='flex  flex-col h-full'>
-              <main className=' flex flex-col justify-between p-3 h-full   '>
+              <main className=' flex flex-col justify-between p-3 h-full gap-3   '>
                 <h1 className='font-bold text-xl'>Aniversario do Jão</h1>
-                <ul className=' text-text-secondary'>
+                <ul className=' text-text-secondary '>
                   <li className='flex  items-center  '><Clock className='h-4' />19:00 - 23:00</li>
                   <li className='flex  items-center  '><MapPin className='h-4' />Restaurante Sabor & Arte</li>
                   <li className='flex  items-center  '><User className='h-4 ' />Criado por: Tonny Ferreira</li>
