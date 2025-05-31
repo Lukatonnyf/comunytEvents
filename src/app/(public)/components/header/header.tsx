@@ -14,7 +14,8 @@ export default function Header() {
 
   return (
     <div className="bg-secondary w-full relative z-10 dark:bg-secondary
-    flex justify-between items-center py-4 px-3 border-b border-b-border sm:px-10">
+  flex justify-between items-center h-16 px-3 border-b border-b-border sm:px-10">
+
 
       <div className="ml-auto flex justify-end items-center">
         <ul className="flex gap-2 items-center">
