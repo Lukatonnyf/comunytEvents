@@ -8,7 +8,7 @@ import MenuBar from "./components/menuBar";
 export default function Header() {
   const [showMenuBar, setShowMenuBar] = useState(false);
 
-  function teste() {
+  function shoMenuFunction() {
     setShowMenuBar(!showMenuBar)
   }
 
@@ -19,13 +19,22 @@ export default function Header() {
 
       <div className="ml-auto flex justify-end items-center">
         <ul className="flex gap-2 items-center">
-          <li className="bg-tertiary p-2 rounded-full dark:text-white">
+          <li className="p-2 rounded-full   bg-tertiary
+               transition-all duration-500 delay-200
+             hover:bg-[linear-gradient(45deg,var(--color-gradient-start),var(--color-gradient-middle),var(--color-gradient-end))]">
             <Bell className="size-5" />
           </li>
-          <li className="bg-tertiary p-2 rounded-full text-black">
+          <li
+            className={`p-2 rounded-full text-black
+             bg-tertiary transition-all duration-500 delay-600
+             hover:bg-[linear-gradient(45deg,var(--color-gradient-start),var(--color-gradient-middle),var(--color-gradient-end))]
+             ${showMenuBar ? 'bg-[linear-gradient(45deg,var(--color-gradient-start),var(--color-gradient-middle),var(--color-gradient-end))]' : ''}
+             `}
+
+          >
             <PersonStanding
               className="p-1 rounded-full text-amber-50 size-5 bg-black dark:text-black dark:bg-white"
-              onClick={teste}
+              onClick={shoMenuFunction}
             />
           </li>
         </ul>
