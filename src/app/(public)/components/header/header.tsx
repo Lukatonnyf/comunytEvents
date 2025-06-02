@@ -13,7 +13,7 @@ export default function Header() {
   }
 
   return (
-    <div className="bg-secondary w-full relative z-10 dark:bg-secondary
+    <div className="bg-secondary w-full fixed z-10 dark:bg-secondary
   flex justify-between items-center h-16 px-3 border-b border-b-border sm:px-10">
 
 
