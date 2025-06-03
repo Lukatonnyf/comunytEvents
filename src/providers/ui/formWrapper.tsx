@@ -9,13 +9,12 @@ import { DefaultValues } from "react-hook-form";
 
 type FormWrapperProps<T extends FieldValues> = {
   defaultValues: DefaultValues<T>;
-  onSubmit: (data: T) => void;
+  onSubmit?: (data: T) => void;
   children: (methods: UseFormReturn<T>) => ReactNode;
   className?: string;
 };
 
 export function FormWrapper<T extends FieldValues>({
-
   defaultValues,
   onSubmit,
   children,
@@ -25,7 +24,7 @@ export function FormWrapper<T extends FieldValues>({
 
   return (
     <FormProvider {...methods} >
-      <form onSubmit={methods.handleSubmit(onSubmit)} className={className}>
+      <form onSubmit={methods.handleSubmit(onSubmit ?? (() => { }))} className={className}>
         {children(methods)}
       </form>
     </FormProvider>

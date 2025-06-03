@@ -5,13 +5,9 @@ interface ButtonProps {
   children?: React.ReactNode;
   onClick?: () => void;
   className?: string | undefined;
+  type?: "button" | "submit" | "reset";
 
-  // buttons?: {
-  //   className: string | undefined;
-  //   text: React.ReactNode | string;
-  //   onClick?: () => void;
-  // }[];
-  // className?: string;
+
 }
 
 // Import the Poppins font from next/font/google or define it accordingly
@@ -19,11 +15,12 @@ import { Poppins } from 'next/font/google';
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '700'] });
 
-const Button = ({ children, onClick, className = '' }: ButtonProps) => {
+const Button = ({ children, onClick, className = '', type }: ButtonProps) => {
   const [onMouse, setOnMouse] = useState(false);
   return (
 
     <button
+      type={type}
       onClick={onClick}
       className={`
          ${poppins.className} font-medium

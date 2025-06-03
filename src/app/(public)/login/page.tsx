@@ -1,15 +1,13 @@
 "use client"
-
+import { useRouter } from "next/navigation";
 import axios from 'axios'
 import { FormWrapper } from "@/providers/ui/formWrapper";
 import Button from "@/ui/button";
 import { ArrowLeft } from 'lucide-react';
-import { useRouter } from "next/navigation";
 
 type FormValues = {
-  name: string,
-  email: string;
   password: string;
+  email: string;
 };
 
 export default function Login() {
@@ -26,12 +24,12 @@ function Form() {
     }
   };
 
-  const loginAccount = () => {
-    window.location.href = '/login'
+  const createAccount = () => {
+    window.location.href = '/register'
   }
 
-
   const router = useRouter();
+
   // const returnHomePage = () => {
   //   window.location.href = '/'
   // }
@@ -57,49 +55,28 @@ function Form() {
         {({ register }) => (
           <div className="w-full flex flex-col gap-5">
             <section>
-              <h1>Criar Conta</h1>
+              <h1>Login</h1>
             </section>
 
             <label className="w-full flex flex-col gap-2">
-              Digite Seu nome
+              Email Cadastrado
               <input
                 {...register("email")}
-                placeholder="Digite o seu nome de usuário ( username )"
+                placeholder="Digite o email da sua conta"
                 className="bg-tertiary border-1 p-2 rounded-sm outline-none"
               />
             </label>
-
-
 
             <label className="w-full flex flex-col gap-2">
-              Cadastrar Email
-              <input
-                {...register("email")}
-                placeholder="Cadastre um email "
-                className="bg-tertiary border-1 p-2 rounded-sm outline-none"
-              />
-            </label>
-
-            <label className="w-full flex flex-col gap-1">
               Senha
               <input
                 type="password"
                 {...register("password")}
-                placeholder="Crie uma senha para sua conta"
+                placeholder="Digite a senha da sua conta"
                 className="bg-tertiary border-1 p-2 rounded-sm outline-none"
               />
+              <p className="text-blue-500 cursor-pointer">esqueci minha senha...</p>
             </label>
-
-            <label className="w-full flex flex-col gap-1">
-              Confirmar Senha
-              <input
-                type="password"
-                {...register("password")}
-                placeholder="Confirme sua Senha"
-                className="bg-tertiary border-1 p-2 rounded-sm outline-none"
-              />
-            </label>
-
 
             <div className="flex flex-row-reverse mt-10 gap-x-5">
 
@@ -107,16 +84,16 @@ function Form() {
                 type="submit"
                 className="bg-gradient-45 text-white rounded-sm">
                 <span className="flex sm:justify-center items-center gap-2 ">
-                  Criar Conta
+                  Logar
                 </span>
               </Button>
 
               <Button
-                onClick={loginAccount}
+                onClick={createAccount}
                 type="submit"
                 className="bg-secondary  rounded-sm">
                 <span className="flex sm:justify-center items-center gap-2 ">
-                  Fazer Login
+                  Criar Conta
                 </span>
               </Button>
 
