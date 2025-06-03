@@ -18,11 +18,11 @@ import Carousel from './carousel';
 
 
 export default function HomePage({ className }: { className: string }) {
-  const [showFormActivity, setShowFormActivity] = useState(false)
+  // const [showFormActivity, setShowFormActivity] = useState(false)
 
-  function showForm() {
-    setShowFormActivity(!showFormActivity)
-  }
+  // function showForm() {
+  //   setShowFormActivity(!showFormActivity)
+  // }
 
   const goToLoginPage = () => {
     window.location.href = '/login'
