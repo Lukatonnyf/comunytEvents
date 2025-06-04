@@ -1,7 +1,6 @@
 // app/api/register/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { MongoClient, Db } from 'mongodb'
-import url from 'url';
 
 let cachedDb: Db | null = null;
 
