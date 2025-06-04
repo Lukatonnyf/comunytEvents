@@ -1,21 +1,20 @@
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 
-// interface User {
-//   _id: string,
-//   name: string,
-//   emai: string,
-//   subscribedAt: string
-// }
-// interface Params {
-//   id: string;
-// }
+interface User {
+  _id: string,
+  name: string,
+  emai: string,
+  subscribedAt: string
+}
+type PageProps = {
+  params: {
+    id: string
+  }
+}
 
-// interface Props {
-//   params: Params;
-// }
 
-export default async function ProfilePage({ params }: any) {
+export default async function ProfilePage({ params }: PageProps) {
 
   const { id } = params
 
