@@ -15,7 +15,7 @@ import { connectToDatabase } from '@/lib/mongodb';
 //   params: Params;
 // }
 
-export default async function ProfilePage({ params }: { params: { id: string } }) {
+export default async function ProfilePage({ params }: any) {
 
   const { id } = params
 
