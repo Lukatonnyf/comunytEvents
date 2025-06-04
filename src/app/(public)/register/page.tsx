@@ -5,11 +5,13 @@ import { FormWrapper } from "@/providers/ui/formWrapper";
 import Button from "@/ui/button";
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from "next/navigation";
+import { useState } from 'react';
 
 type FormValues = {
-  name: string,
+  name: string;
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
 export default function Login() {
@@ -17,14 +19,34 @@ export default function Login() {
 }
 
 function Form() {
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const handleSubmit = async (data: FormValues) => {
-    try {
-      const response = await axios.post('/api/subscribe', data);
-      console.log('Resposta da API:', response.data, { text: "foifoi" });
-    } catch (error) {
-      console.error('Erro ao enviar dados:', error);
+    console.log("Dados que serão enviados para a API:", data);
+    if (confirmPassword === password) {
+      try {
+        const response = await axios.post('/api/register', data);
+        console.log('Resposta da API:', response.data, { text: "foifoi" });
+
+
+        if (response.data.ok) {
+          const userId = response.data.id;
+          router.push(`/profile/${userId}`);
+        }
+      } catch (error) {
+        // Se o erro for 400, o log do erro do Axios pode ser útil também
+        if (axios.isAxiosError(error)) {
+          console.error('Erro Axios:', error.response?.data || error.message);
+        } else {
+          console.error('Erro ao enviar dados:', error);
+        }
+      }
+    } else {
+      console.log("As senhas não Coecidem")
     }
   };
+
 
   const loginAccount = () => {
     window.location.href = '/login'
@@ -32,9 +54,9 @@ function Form() {
 
 
   const router = useRouter();
-  // const returnHomePage = () => {
-  //   window.location.href = '/'
-  // }
+
+
+
 
   return (
     <div>
@@ -48,7 +70,7 @@ function Form() {
       </div>
 
       <FormWrapper<FormValues>
-        defaultValues={{ email: "", password: "" }}
+        defaultValues={{ name: "", email: "", password: "", confirmPassword: "" }}
         onSubmit={handleSubmit}
         className="flex flex-col justify-center items-center
       fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50
@@ -63,7 +85,8 @@ function Form() {
             <label className="w-full flex flex-col gap-2">
               Digite Seu nome
               <input
-                {...register("email")}
+                required
+                {...register("name")}
                 placeholder="Digite o seu nome de usuário ( username )"
                 className="bg-tertiary border-1 p-2 rounded-sm outline-none"
               />
@@ -74,7 +97,14 @@ function Form() {
             <label className="w-full flex flex-col gap-2">
               Cadastrar Email
               <input
-                {...register("email")}
+                required
+                {...register("email", {
+                  required: "O email é obrigatório",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // regex simples para validar email
+                    message: "Email inválido"
+                  }
+                })}
                 placeholder="Cadastre um email "
                 className="bg-tertiary border-1 p-2 rounded-sm outline-none"
               />
@@ -84,7 +114,10 @@ function Form() {
               Senha
               <input
                 type="password"
+                required
                 {...register("password")}
+                min={5}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Crie uma senha para sua conta"
                 className="bg-tertiary border-1 p-2 rounded-sm outline-none"
               />
@@ -94,7 +127,10 @@ function Form() {
               Confirmar Senha
               <input
                 type="password"
-                {...register("password")}
+                required
+                min={5}
+                {...register("confirmPassword")}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirme sua Senha"
                 className="bg-tertiary border-1 p-2 rounded-sm outline-none"
               />
@@ -113,7 +149,7 @@ function Form() {
 
               <Button
                 onClick={loginAccount}
-                type="submit"
+                type="button"
                 className="bg-secondary  rounded-sm">
                 <span className="flex sm:justify-center items-center gap-2 ">
                   Fazer Login

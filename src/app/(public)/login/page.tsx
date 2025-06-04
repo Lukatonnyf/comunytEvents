@@ -11,16 +11,24 @@ type FormValues = {
 };
 
 export default function Login() {
-  return <Form />
-}
+  //   return <Form />
+  // }
 
-function Form() {
   const handleSubmit = async (data: FormValues) => {
     try {
-      const response = await axios.post('/api/subscribe', data);
-      console.log('Resposta da API:', response.data, { text: "foifoi" });
+      const response = await axios.post('/api/login', data); // API route que você vai criar
+      const { success, message } = response.data;
+
+      if (success) {
+        alert("Login realizado com sucesso!");
+        // redirecionar ou armazenar token etc.
+      } else {
+        alert("Credenciais inválidas: " + message);
+      }
+
     } catch (error) {
       console.error('Erro ao enviar dados:', error);
+      alert("Erro no login. Tente novamente.");
     }
   };
 
@@ -90,7 +98,7 @@ function Form() {
 
               <Button
                 onClick={createAccount}
-                type="submit"
+                type="button"
                 className="bg-secondary  rounded-sm">
                 <span className="flex sm:justify-center items-center gap-2 ">
                   Criar Conta

@@ -28,6 +28,8 @@ export default function HomePage({ className }: { className: string }) {
     window.location.href = '/login'
   }
 
+  console.log('MONGODB_URI:', process.env.MONGODB_URI);
+
   return (
     <div className={`${className} mt-16
     w-full h-full min-h-0 bg-bg-primary p-[30px]`}	>
