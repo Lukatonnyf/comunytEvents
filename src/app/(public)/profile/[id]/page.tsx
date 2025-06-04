@@ -8,14 +8,12 @@ import { connectToDatabase } from '@/lib/mongodb';
 //   subscribedAt: string
 // }
 
-type PageProps = {
-  params: {
-    id: string
-  }
-}
+type PageParams = {
+  id: string;
+};
 
-
-export default async function ProfilePage({ params }: PageProps) {
+// Usar a tipagem inline para os props
+export default async function ProfilePage({ params }: { params: PageParams }) {
 
   const { id } = params
 
