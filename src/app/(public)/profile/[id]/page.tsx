@@ -13,9 +13,10 @@ type PageParams = {
 };
 
 // Usar a tipagem inline para os props
-export default async function ProfilePage({ params }: { params: PageParams }) {
+export default async function ProfilePage({ params }: { params: Promise<PageParams> }) {
 
-  const { id } = params
+  const resolvedParams = await params;
+  const { id } = resolvedParams
 
   const db = await connectToDatabase(process.env.MONGODB_URI!)
   const user = await db.collection("users").findOne({ _id: new ObjectId(id) })
