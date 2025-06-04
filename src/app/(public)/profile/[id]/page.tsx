@@ -7,15 +7,15 @@ import { connectToDatabase } from '@/lib/mongodb';
 //   emai: string,
 //   subscribedAt: string
 // }
-
-type PageProps = {
-  params: {
-    id: string
-  }
+interface Params {
+  id: string;
 }
 
+interface Props {
+  params: Params;
+}
 
-export default async function ProfilePage({ params }: PageProps) {
+export default async function ProfilePage({ params }: Props) {
 
   const { id } = params
 
