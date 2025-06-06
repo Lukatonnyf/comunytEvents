@@ -1,37 +1,59 @@
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
+import Image from 'next/image';
 
-// interface User {
-//   _id: string,
-//   name: string,
-//   emai: string,
-//   subscribedAt: string
-// }
 
-type PageParams = {
+export type PageParams = {
   id: string;
 };
 
 // Usar a tipagem inline para os props
-export default async function ProfilePage({ params }: { params: Promise<PageParams> }) {
+export default async function ProfilePage({ params }: { params: PageParams }) {
+  const { id } = params;
 
-  const resolvedParams = await params;
-  const { id } = resolvedParams
-
-  const db = await connectToDatabase(process.env.MONGODB_URI!)
-  const user = await db.collection("users").findOne({ _id: new ObjectId(id) })
-
+  const db = await connectToDatabase(process.env.MONGODB_URI!);
+  const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
 
   if (!user) {
-    return <div>Usuário não encontrado</div>
+    return <div>Usuário não encontrado</div>;
   }
 
+
+
   return (
-    <div>
-      <h1>Perfil do usuário</h1>
-      <p>Nome: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>Cadastrado em: {new Date(user.subscribedAt).toLocaleDateString()}</p>
-    </div>
-  )
+    <div className='flex  flex-col h-screen '>
+      <section className='flex justify-center items-baseline
+       h-full mt-16 p-5'>
+
+
+        <div className='flex gap-5 bg-secondary rounded-md container mx-auto   max-w-3xl py-8 px-4 '>
+          <div>
+            <Image
+              src="/defaul.webp"
+              alt="test"
+              width={200}
+              height={50}
+              className='w-32 h-32 border rounded-full'
+            />
+          </div>
+
+          <div className='flex flex-col justify-between gap-2'>
+            <p className='flex flex-col font-bold text-xl uppercase'>
+              {user.name}
+              <span className='text-sm font-normal dark:text-gray-400 normal-case'>
+                {user.email}
+              </span>
+            </p>
+            <p className='normal-case dark:text-gray-400'>Cadastrado em: {new Date(user.subscribedAt).toLocaleDateString()}</p>
+
+          </div>
+        </div>
+
+        <div>
+
+        </div>
+      </section >
+
+    </div >
+  );
 }

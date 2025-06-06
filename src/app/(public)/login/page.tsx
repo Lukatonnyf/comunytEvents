@@ -1,9 +1,15 @@
-"use client"
+"use client";
 import { useRouter } from "next/navigation";
-import axios from 'axios'
+import axios from "axios";
 import { FormWrapper } from "@/providers/ui/formWrapper";
 import Button from "@/ui/button";
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from "lucide-react";
+import { jwtDecode } from 'jwt-decode';
+
+type TokenPayload = {
+  userId: string;
+  email: string;
+};
 
 type FormValues = {
   password: string;
@@ -11,54 +17,54 @@ type FormValues = {
 };
 
 export default function Login() {
-  //   return <Form />
-  // }
+  const router = useRouter();
 
   const handleSubmit = async (data: FormValues) => {
     try {
-      const response = await axios.post('/api/login', data); // API route que você vai criar
-      const { success, message } = response.data;
+      const response = await axios.post("/api/login", data);
+      const { ok, error, token, userId } = response.data;
 
-      if (success) {
+      if (ok) {
         alert("Login realizado com sucesso!");
-        // redirecionar ou armazenar token etc.
-      } else {
-        alert("Credenciais inválidas: " + message);
-      }
+        localStorage.setItem("token", token);
 
-    } catch (error) {
+        // decodificador do token para extrair o id
+        const decoded = jwtDecode<TokenPayload>(token)
+        router.push(`/profile/${decoded.userId}`);
+      } else {
+        alert("Credenciais inválidas: " + error);
+      }
+    } catch (error: any) {
       console.error('Erro ao enviar dados:', error);
-      alert("Erro no login. Tente novamente.");
+
+      // 🛑 Quando o erro vem com status (como 401), a resposta real está em:
+      console.log("🔴 Erro com response.data:", error.response?.data);
+
+      alert("Erro no login: " + (error.response?.data?.error || "Erro desconhecido"));
     }
   };
 
   const createAccount = () => {
-    window.location.href = '/register'
-  }
-
-  const router = useRouter();
-
-  // const returnHomePage = () => {
-  //   window.location.href = '/'
-  // }
+    router.push("/register");
+  };
 
   return (
     <div>
-
       <div>
         <button
           onClick={() => router.back()}
-          className='bg-tertiary  rounded-full  p-2 mt-5 ml-5
-        transition-all duration-500
-        hover:bg-secondary '><ArrowLeft className='size-5 ' /></button>
+          className="bg-tertiary rounded-full p-2 mt-5 ml-5 transition-all duration-500 hover:bg-secondary"
+        >
+          <ArrowLeft className="size-5" />
+        </button>
       </div>
 
       <FormWrapper<FormValues>
         defaultValues={{ email: "", password: "" }}
         onSubmit={handleSubmit}
         className="flex flex-col justify-center items-center
-      fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50
-      w-6/7 lg:w-[35rem] p-5 gap-5 bg-secondary rounded-xl"
+          fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50
+          w-6/7 lg:w-[35rem] p-5 gap-5 bg-secondary rounded-xl"
       >
         {({ register }) => (
           <div className="w-full flex flex-col gap-5">
@@ -87,11 +93,11 @@ export default function Login() {
             </label>
 
             <div className="flex flex-row-reverse mt-10 gap-x-5">
-
               <Button
                 type="submit"
-                className="bg-gradient-45 text-white rounded-sm">
-                <span className="flex sm:justify-center items-center gap-2 ">
+                className="bg-gradient-45 text-white rounded-sm"
+              >
+                <span className="flex sm:justify-center items-center gap-2">
                   Logar
                 </span>
               </Button>
@@ -99,12 +105,12 @@ export default function Login() {
               <Button
                 onClick={createAccount}
                 type="button"
-                className="bg-secondary  rounded-sm">
-                <span className="flex sm:justify-center items-center gap-2 ">
+                className="bg-secondary rounded-sm"
+              >
+                <span className="flex sm:justify-center items-center gap-2">
                   Criar Conta
                 </span>
               </Button>
-
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 "use client"
 import { Poppins } from 'next/font/google'
-
+import { connectToDatabase } from '@/lib/mongodb';
 // If loading a variable font, you don't need to specify the font weight
 const poppins = Poppins({
   subsets: ['latin'],
@@ -13,23 +13,50 @@ import { BiPlus, BiSolidCameraPlus, BiSolidEnvelope } from "react-icons/bi";
 import Card from "@/ui/Cards";
 import Button from "@/ui/button";
 import DateCurrent from '../features/currentDate';
-// import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { jwtDecode } from 'jwt-decode'
 import Carousel from './carousel';
 
+type TokenPayload = {
+  userId: string
+  email: string
+  exp: number // tempo de expiração
+}
 
-export default function HomePage({ className }: { className: string }) {
-  // const [showFormActivity, setShowFormActivity] = useState(false)
 
-  // function showForm() {
-  //   setShowFormActivity(!showFormActivity)
-  // }
+export default function HomePage({ className }: { className: string; }) {
+  const router = useRouter();
 
-  const goToLoginPage = () => {
-    window.location.href = '/login'
+
+
+  const handleClick = () => {
+    const token = localStorage.getItem('token')
+
+    if (!token) {
+      // Nenhum token: usuário não está logado
+      return router.push('/login')
+    }
+
+    try {
+      const decoded = jwtDecode<TokenPayload>(token)
+
+      const agora = Date.now() / 1000 // em segundos
+      if (decoded.exp < agora) {
+        // Token expirado
+        localStorage.removeItem('token')
+        return router.push('/login')
+      }
+
+      // Usuário está logado → redirecionar
+      router.push(`/profile/${decoded.userId}`)
+    } catch (err) {
+      // Token inválido
+      localStorage.removeItem('token')
+      router.push('/login')
+    }
   }
 
   console.log('MONGODB_URI:', process.env.MONGODB_URI);
-
   return (
     <div className={`${className} mt-16
     w-full h-full min-h-0 bg-bg-primary p-[30px]`}	>
@@ -44,7 +71,7 @@ export default function HomePage({ className }: { className: string }) {
         <div className="flex flex-col flex-wrap gap-4 mt-4 sm:flex-row ">
           <Button className="bg-gradient-45 text-white "
             // onClick={showForm}
-            onClick={goToLoginPage}
+            onClick={handleClick}
           >
             <span className="flex sm:justify-center  items-center gap-2 ">
               <BiPlus className={`w-4 h-4 ${poppins.className} font-light`} /> Criar Evento

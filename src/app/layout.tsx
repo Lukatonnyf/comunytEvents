@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { ThemeProvider } from "@/providers/theme-providers";
+import Header from "./(public)/components/header/header";
 
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="light"
         >
+          <Header />
           {children}
         </ThemeProvider>
       </body>
