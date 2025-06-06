@@ -33,6 +33,7 @@ function Form() {
         if (response.data.ok) {
           const userId = response.data.id;
           router.push(`/profile/${userId}`);
+          localStorage.setItem("token", response.data.token);
         }
       } catch (error) {
         // Se o erro for 400, o log do erro do Axios pode ser útil também

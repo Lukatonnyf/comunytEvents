@@ -60,14 +60,11 @@ export  async function POST(request: NextRequest) {
   )
 
 
-
-  return NextResponse.json(
-    {
-       ok: true,
-      token
-    },
-    {status: 201}
-  )
+return NextResponse.json({
+  ok: true,
+  token,
+  id: saveUser.insertedId.toString(), // 👈 aqui está o ID do usuário
+}, { status: 201 });
 }
 
 
