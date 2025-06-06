@@ -47,79 +47,80 @@ export default function Login() {
         alert("Erro inesperado ao tentar logar.");
       }
     }
+  }
 
 
-    const createAccount = () => {
-      router.push("/register");
-    };
+  const createAccount = () => {
+    router.push("/register");
+  };
 
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          <button
-            onClick={() => router.back()}
-            className="bg-tertiary rounded-full p-2 mt-5 ml-5 transition-all duration-500 hover:bg-secondary"
-          >
-            <ArrowLeft className="size-5" />
-          </button>
-        </div>
+        <button
+          onClick={() => router.back()}
+          className="bg-tertiary rounded-full p-2 mt-5 ml-5 transition-all duration-500 hover:bg-secondary"
+        >
+          <ArrowLeft className="size-5" />
+        </button>
+      </div>
 
-        <FormWrapper<FormValues>
-          defaultValues={{ email: "", password: "" }}
-          onSubmit={handleSubmit}
-          className="flex flex-col justify-center items-center
+      <FormWrapper<FormValues>
+        defaultValues={{ email: "", password: "" }}
+        onSubmit={handleSubmit}
+        className="flex flex-col justify-center items-center
           fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50
           w-6/7 lg:w-[35rem] p-5 gap-5 bg-secondary rounded-xl"
-        >
-          {({ register }) => (
-            <div className="w-full flex flex-col gap-5">
-              <section>
-                <h1>Login</h1>
-              </section>
+      >
+        {({ register }) => (
+          <div className="w-full flex flex-col gap-5">
+            <section>
+              <h1>Login</h1>
+            </section>
 
-              <label className="w-full flex flex-col gap-2">
-                Email Cadastrado
-                <input
-                  {...register("email")}
-                  placeholder="Digite o email da sua conta"
-                  className="bg-tertiary border-1 p-2 rounded-sm outline-none"
-                />
-              </label>
+            <label className="w-full flex flex-col gap-2">
+              Email Cadastrado
+              <input
+                {...register("email")}
+                placeholder="Digite o email da sua conta"
+                className="bg-tertiary border-1 p-2 rounded-sm outline-none"
+              />
+            </label>
 
-              <label className="w-full flex flex-col gap-2">
-                Senha
-                <input
-                  type="password"
-                  {...register("password")}
-                  placeholder="Digite a senha da sua conta"
-                  className="bg-tertiary border-1 p-2 rounded-sm outline-none"
-                />
-                <p className="text-blue-500 cursor-pointer">esqueci minha senha...</p>
-              </label>
+            <label className="w-full flex flex-col gap-2">
+              Senha
+              <input
+                type="password"
+                {...register("password")}
+                placeholder="Digite a senha da sua conta"
+                className="bg-tertiary border-1 p-2 rounded-sm outline-none"
+              />
+              <p className="text-blue-500 cursor-pointer">esqueci minha senha...</p>
+            </label>
 
-              <div className="flex flex-row-reverse mt-10 gap-x-5">
-                <Button
-                  type="submit"
-                  className="bg-gradient-45 text-white rounded-sm"
-                >
-                  <span className="flex sm:justify-center items-center gap-2">
-                    Logar
-                  </span>
-                </Button>
+            <div className="flex flex-row-reverse mt-10 gap-x-5">
+              <Button
+                type="submit"
+                className="bg-gradient-45 text-white rounded-sm"
+              >
+                <span className="flex sm:justify-center items-center gap-2">
+                  Logar
+                </span>
+              </Button>
 
-                <Button
-                  onClick={createAccount}
-                  type="button"
-                  className="bg-secondary rounded-sm"
-                >
-                  <span className="flex sm:justify-center items-center gap-2">
-                    Criar Conta
-                  </span>
-                </Button>
-              </div>
+              <Button
+                onClick={createAccount}
+                type="button"
+                className="bg-secondary rounded-sm"
+              >
+                <span className="flex sm:justify-center items-center gap-2">
+                  Criar Conta
+                </span>
+              </Button>
             </div>
-          )}
-        </FormWrapper>
-      </div>
-    );
-  }
+          </div>
+        )}
+      </FormWrapper>
+    </div>
+  );
+}
