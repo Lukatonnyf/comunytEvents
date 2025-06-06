@@ -48,7 +48,7 @@ export default function HomePage({ className }: { className: string; }) {
 
       // Usuário está logado → redirecionar
       router.push(`/profile/${decoded.userId}`)
-    } catch (err) {
+    } catch (error) {
       // Token inválido
       localStorage.removeItem('token')
       router.push('/login')

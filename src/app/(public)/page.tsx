@@ -1,5 +1,4 @@
 import AsideCard from "./components/asideCard";
-import Header from "./components/header/header"
 import HomePage from "./components/homePage";
 
 
