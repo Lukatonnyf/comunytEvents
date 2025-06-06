@@ -3,8 +3,8 @@ import { connectToDatabase } from "@/lib/mongodb";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-export default async function ProfilePage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function ProfilePage({ params }: any) {
+  const { id } = params as { id: string };
 
   const db = await connectToDatabase(process.env.MONGODB_URI!);
   const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
