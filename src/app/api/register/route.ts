@@ -28,46 +28,41 @@ async function connectToDatabase(uri: string){
 const JWT_SECRET = process.env.JWT_SECRET || 'segredo_super_secreto'
 
 
-export  async function POST(request: NextRequest) {
-  const { name, email, password } = await request.json();
+export async function POST(request: NextRequest) {
+  try {
+    const { name, email, password } = await request.json();
+    console.log("📥 Dados recebidos:", { name, email, password });
 
-  if(!name || !email || !password)
-  return NextResponse.json({error: 'Campos faltando'}, {status: 400})
+    if (!name || !email || !password) {
+      return NextResponse.json({ error: "Campos faltando" }, { status: 400 });
+    }
 
-  const db = await connectToDatabase(process.env.MONGODB_URI!);
-  const users = db.collection('users')
+    const db = await connectToDatabase(process.env.MONGODB_URI!);
+    const users = db.collection("users");
 
+    const userExists = await users.findOne({ email });
+    if (userExists) {
+      return NextResponse.json({ error: "Usuário já existente" }, { status: 409 });
+    }
 
-  const userExists = await users.findOne({email})
-  if(userExists)
-  return NextResponse.json({error: "Usuário já existente"}, {status: 409})
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const saveUser = await users.insertOne({
+      name,
+      email,
+      password: hashedPassword,
+      subscribedAt: new Date(),
+    });
 
-  // => A linha abaixo ciptografa a senha.
-  const hashedPassword = await bcrypt.hash(password, 10)
-  // => Cria e salva o usuário no BD
-  const saveUser = await users.insertOne({
-    name,
-    email,
-    password: hashedPassword,
-    subscribedAt: new Date(),
-  })
+    const token = jwt.sign(
+      { userId: saveUser.insertedId.toString(), email },
+      JWT_SECRET,
+      { expiresIn: "7d" }
+    );
 
-  // => Cria o Token JWT junto com o id do usuário
-  const token = jwt.sign(
-    { userId: saveUser.insertedId, email},
-    JWT_SECRET,
-    {expiresIn: '7d'}
-  )
+    return NextResponse.json({ ok: true, token, id: saveUser.insertedId.toString() }, { status: 201 });
 
-
-return NextResponse.json({
-  ok: true,
-  token,
-  id: saveUser.insertedId.toString(), // 👈 aqui está o ID do usuário
-}, { status: 201 });
-}
-
-
-export async function GET() {
-  return NextResponse.json({ env: process.env.MONGODB_URI || null });
+  } catch (err) {
+    console.error("🔥 Erro no register:", err);
+    return NextResponse.json({ error: "Erro interno no servidor" }, { status: 500 });
+  }
 }
