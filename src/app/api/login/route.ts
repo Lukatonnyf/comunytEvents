@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { MongoClient, Db } from 'mongodb';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { stat } from "fs";
 
 let cachedDb: Db | null = null;
 

@@ -22,7 +22,7 @@ export default function Login() {
   const handleSubmit = async (data: FormValues) => {
     try {
       const response = await axios.post("/api/login", data);
-      const { ok, error, token, userId } = response.data;
+      const { ok, error, token } = response.data;
 
       if (ok) {
         alert("Login realizado com sucesso!");
