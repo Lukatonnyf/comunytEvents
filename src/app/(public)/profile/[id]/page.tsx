@@ -1,3 +1,4 @@
+
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 import Image from 'next/image';
@@ -16,9 +17,12 @@ export default async function ProfilePage({ params }: PageProps) {
   if (!user) {
     return notFound(); // ou componente JSX com mensagem de erro
   }
-
+  // const router = useRouter();
   return (
     <div className="flex flex-col h-screen">
+
+
+
       <section className="flex justify-center items-baseline h-full mt-16 p-5">
         <div className="flex gap-5 bg-secondary rounded-md container mx-auto max-w-3xl py-8 px-4">
           <div>
@@ -43,6 +47,6 @@ export default async function ProfilePage({ params }: PageProps) {
           </div>
         </div>
       </section>
-    </div>
+    </div >
   );
 }

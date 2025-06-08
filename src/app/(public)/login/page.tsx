@@ -56,14 +56,7 @@ export default function Login() {
 
   return (
     <div>
-      <div>
-        <button
-          onClick={() => router.back()}
-          className="bg-tertiary rounded-full p-2 mt-5 ml-5 transition-all duration-500 hover:bg-secondary"
-        >
-          <ArrowLeft className="size-5" />
-        </button>
-      </div>
+
 
       <FormWrapper<FormValues>
         defaultValues={{ email: "", password: "" }}

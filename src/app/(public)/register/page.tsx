@@ -3,7 +3,6 @@
 import axios from 'axios'
 import { FormWrapper } from "@/providers/ui/formWrapper";
 import Button from "@/ui/button";
-import { ArrowLeft } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { useState } from 'react';
 
@@ -21,7 +20,7 @@ export default function Login() {
 function Form() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const router = useRouter();
   const handleSubmit = async (data: FormValues) => {
     console.log("Dados que serão enviados para a API:", data);
     if (confirmPassword === password) {
@@ -54,7 +53,7 @@ function Form() {
   }
 
 
-  const router = useRouter();
+
 
 
 
@@ -62,13 +61,7 @@ function Form() {
   return (
     <div>
 
-      <div>
-        <button
-          onClick={() => router.back()}
-          className='bg-tertiary  rounded-full  p-2 mt-5 ml-5
-        transition-all duration-500
-        hover:bg-secondary '><ArrowLeft className='size-5 ' /></button>
-      </div>
+
 
       <FormWrapper<FormValues>
         defaultValues={{ name: "", email: "", password: "", confirmPassword: "" }}
