@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { FormWrapper } from "@/providers/ui/formWrapper";
 import Button from "@/ui/button";
-import { ArrowLeft } from "lucide-react";
 import { jwtDecode } from 'jwt-decode';
 
 type TokenPayload = {
