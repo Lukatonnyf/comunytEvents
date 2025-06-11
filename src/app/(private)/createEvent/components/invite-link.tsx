@@ -1,29 +1,29 @@
-'use client'
+// 'use client'
 
-import { Copy, Link } from 'lucide-react'
-import { IconButton } from './icon-button'
-import { InputField, InputIcon, InputRoot } from './input'
+// import { Copy, Link } from 'lucide-react'
+// import { IconButton } from './icon-button'
+// import { InputField, InputIcon, InputRoot } from './input'
 
-interface InviteLinkInputProps {
-  inviteLink: string
-}
+// interface InviteLinkInputProps {
+//   inviteLink: string
+// }
 
-export function InviteLinkInput({ inviteLink }: InviteLinkInputProps) {
-  function copyInviteLink() {
-    navigator.clipboard.writeText(inviteLink)
-  }
+// export function InviteLinkInput({ inviteLink }: InviteLinkInputProps) {
+//   function copyInviteLink() {
+//     navigator.clipboard.writeText(inviteLink)
+//   }
 
-  return (
-    <InputRoot>
-      <InputIcon>
-        <Link className="size-5" />
-      </InputIcon>
+//   return (
+//     <InputRoot>
+//       <InputIcon>
+//         <Link className="size-5" />
+//       </InputIcon>
 
-      <InputField readOnly defaultValue={inviteLink} />
+//       <InputField readOnly defaultValue={inviteLink} />
 
-      <IconButton className="-mr-2" onClick={copyInviteLink}>
-        <Copy className="size-5" />
-      </IconButton>
-    </InputRoot>
-  )
-}
+//       <IconButton className="-mr-2" onClick={copyInviteLink}>
+//         <Copy className="size-5" />
+//       </IconButton>
+//     </InputRoot>
+//   )
+// }
