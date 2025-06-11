@@ -89,13 +89,13 @@ const MenuBar = () => {
 
 
     if (pathname.startsWith("/profile")) {
-      router.push("/login");
+      router.push("/");
     }
   }
 
 
   return (
-    <Card className="fixed top-17 right-6 w-[16rem] h-[22rem]] p-5 gap-5">
+    <Card className="fixed  z-40 top-17 right-6 w-[16rem] h-[22rem]] p-5 gap-5">
       <h1 className="font-bold text-xl">Menu</h1>
 
       <div className="flex flex-col gap-2 w-full">

@@ -23,7 +23,7 @@ export default async function ProfilePage({ params }: PageProps) {
 
 
 
-      <section className="flex justify-center items-baseline h-full mt-16 p-5">
+      <section className="flex justify-center items-baseline h-full mt-16 p-5 ">
         <div className="flex gap-5 bg-secondary rounded-md container mx-auto max-w-3xl py-8 px-4">
           <div>
             <Image

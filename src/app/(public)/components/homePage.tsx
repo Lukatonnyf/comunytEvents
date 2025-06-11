@@ -26,9 +26,8 @@ type TokenPayload = {
 export default function HomePage({ className }: { className: string; }) {
   const router = useRouter();
 
+  const validade = ({ page }: { page: string }) => {
 
-
-  const handleClick = () => {
     const token = localStorage.getItem('token')
 
     if (!token) {
@@ -47,13 +46,23 @@ export default function HomePage({ className }: { className: string; }) {
       }
 
       // Usuário está logado → redirecionar
-      router.push(`/profile/${decoded.userId}`)
+      router.push(`/${page}/${decoded.userId}`)
     } catch {
       // Token inválido
       localStorage.removeItem('token')
       router.push('/login')
     }
   }
+
+  const handleClick = () => {
+    validade({ page: "profile" })
+  }
+
+  const createInvite = () => {
+    validade({ page: "createEvent" })
+  }
+
+
 
   console.log('MONGODB_URI:', process.env.MONGODB_URI);
   return (
@@ -73,11 +82,15 @@ export default function HomePage({ className }: { className: string; }) {
             onClick={handleClick}
           >
             <span className="flex sm:justify-center  items-center gap-2 ">
-              <BiPlus className={`w-4 h-4 ${poppins.className} font-light`} /> Criar Evento
+              <BiPlus className={`w-4 h-4 ${poppins.className} font-light`}
+                onClick={handleClick}
+              /> Criar Evento
             </span>
           </Button>
 
-          <Button>
+          <Button
+            onClick={createInvite}
+          >
             <span className="flex sm:justify-center items-center gap-2 font-normal">
               <BiSolidEnvelope className={`w-4 h-4 ${poppins.className} font-medium`} /> Enviar Convites
             </span>
