@@ -7,13 +7,11 @@ import { notFound } from 'next/navigation';
 
 
 interface PageProps {
-  params: {
-    id: string;
-  }
+  params: Promise<{ id: string }>;
 }
 
 export default async function EnviarConvites({ params }: PageProps) {
-  const { id } = params;
+  const { id } = await params;
 
   const db = await connectToDatabase(process.env.MONGODB_URI!);
   const user = await db.collection("users").findOne({ _id: new ObjectId(id) });
