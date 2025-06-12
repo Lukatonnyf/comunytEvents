@@ -79,17 +79,17 @@ export default function HomePage({ className }: { className: string; }) {
         <div className="flex flex-col flex-wrap gap-4 mt-4 sm:flex-row ">
           <Button className="bg-gradient-45 text-white "
             // onClick={showForm}
-            onClick={handleClick}
+            onClick={createInvite}
           >
             <span className="flex sm:justify-center  items-center gap-2 ">
               <BiPlus className={`w-4 h-4 ${poppins.className} font-light`}
-                onClick={handleClick}
+                onClick={createInvite}
               /> Criar Evento
             </span>
           </Button>
 
           <Button
-            onClick={createInvite}
+
           >
             <span className="flex sm:justify-center items-center gap-2 font-normal">
               <BiSolidEnvelope className={`w-4 h-4 ${poppins.className} font-medium`} /> Enviar Convites

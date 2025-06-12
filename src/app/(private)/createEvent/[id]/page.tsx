@@ -4,6 +4,7 @@ import { Radio } from "lucide-react"
 import { ObjectId } from 'mongodb';
 import { connectToDatabase } from '@/lib/mongodb';
 import { notFound } from 'next/navigation';
+import { InviteLinkInput } from "../components/invite-link";
 
 
 interface PageProps {
@@ -20,6 +21,8 @@ export default async function EnviarConvites({ params }: PageProps) {
     return notFound();
   }
 
+  const inviteLink = `http://localhost:3333/invites/${user._id}`
+
   return (
 
     <div className="min-h-dvh flex flex-col justify-center gap-16 p-5">
@@ -32,6 +35,19 @@ export default async function EnviarConvites({ params }: PageProps) {
       </div>
 
       {user.email}
+      <div className="space-y-6">
+        <div className="space-y-3">
+          <h2 className="text-gray-200 text-xl font-heading font-semibold leading-none">
+            Indique e ganhe
+          </h2>
+          <p className="text-gray-300">
+            Convide mais pessoas para o evento e concorra a prêmios
+            exclusivos! É só compartilhar o link abaixo e acompanhar as
+            inscrições:
+          </p>
+        </div>
+      </div>
+      <InviteLinkInput inviteLink={inviteLink} />
 
       <div className="flex gap-5 items-stretch flex-col md:flex-row">
         <div className="flex-1 bg-gray-700 border border-gray-600 rounded-2xl p-8 space-y-6">
@@ -45,19 +61,18 @@ export default async function EnviarConvites({ params }: PageProps) {
             </span>
           </div>
           <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-            Um evento feito por e para pessoas desenvolvedoras apaixonadas por
-            criar soluções inovadoras e compartilhar conhecimento. Vamos
-            mergulhar nas tendências mais recentes em desenvolvimento de
-            software, arquitetura de sistemas e tecnologias emergentes, com
-            palestras, workshops e hackathons.
-            <br />
-            <br />
-            Dias 15 a 17 de março | Das 18h às 21h | Online & Gratuito
+            Crie eventos para os mais diversos tipos de pessoas, podendo  criar
+            tanto publicos, quanto privados, apenas para os seus amigos mais próximos.
+
           </p>
         </div>
 
         {/* <SubscriptionForm /> */}
       </div>
+
+
+
+
     </div>
   )
 }
