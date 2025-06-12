@@ -54,9 +54,9 @@ export default function HomePage({ className }: { className: string; }) {
     }
   }
 
-  const handleClick = () => {
-    validade({ page: "profile" })
-  }
+  // const handleClick = () => {
+  //   validade({ page: "profile" })
+  // }
 
   const createInvite = () => {
     validade({ page: "createEvent" })
