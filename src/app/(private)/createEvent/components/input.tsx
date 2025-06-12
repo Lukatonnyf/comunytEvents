@@ -1,33 +1,21 @@
-// import { Mail } from 'lucide-react'
-import type { ComponentProps } from 'react'
+// input.tsx
 
-interface InputRootProps extends ComponentProps<'div'> {
-  error?: boolean
+import { twMerge } from 'tailwind-merge'
+import { ComponentProps } from 'react'
+
+export function InputRoot({ className, ...props }: ComponentProps<'div'>) {
+  return <div className={twMerge("flex items-center gap-3", className)} {...props} />
 }
 
-export function InputRoot({ error = false, ...props }: InputRootProps) {
+export function InputIcon({ className, ...props }: ComponentProps<'div'>) {
+  return <div className={twMerge("text-gray-200", className)} {...props} />
+}
+
+export function InputField({ className, ...props }: ComponentProps<'input'>) {
   return (
-    <div
-      data-error={error}
-      className="group bg-gray-800 h-12 border border-gray-600 rounded-xl px-4 flex items-center gap-2 focus-within:border-gray-100 data-[error=true]:border-danger"
+    <input
+      className={twMerge("bg-transparent flex-1 outline-none border-0 text-sm text-gray-100", className)}
       {...props}
     />
   )
-}
-
-interface InputIconProps extends ComponentProps<'span'> { }
-//
-export function InputIcon({ ...props }: InputIconProps) {
-  return (
-    <span
-      className="text-gray-400 group-focus-within:text-gray-100 group-[&:not(:has(input:placeholder-shown))]:text-gray-100 group-data-[error=true]:text-danger"
-      {...props}
-    />
-  )
-}
-
-interface InputFieldProps extends ComponentProps<'input'> { }
-
-export function InputField({ ...props }: InputFieldProps) {
-  return <input className="flex-1 outline-0 placeholder-gray-400" {...props} />
 }
