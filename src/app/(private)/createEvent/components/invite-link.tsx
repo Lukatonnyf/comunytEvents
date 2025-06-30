@@ -1,5 +1,8 @@
 'use client'
 
+import QRCode from 'qrcode'
+import { useState } from 'react'
+import Image from 'next/image'
 import { Copy, Link } from 'lucide-react'
 // import { IconButton } from './icon-button'
 import { InputIcon, InputRoot, InputField } from './input'
@@ -14,8 +17,14 @@ export function InviteLinkInput({ inviteLink }: InviteLinkInputProps) {
     navigator.clipboard.writeText(inviteLink)
   }
 
+  const [qrCode, setQRCode] = useState("")
+
+  const generate = () => {
+    QRCode.toDataURL(`${inviteLink}`).then(setQRCode)
+  }
+
   return (
-    <InputRoot>
+    <InputRoot className='flex-1 flex-col'>
       <InputIcon>
         <Link className="size-5" />
       </InputIcon>
@@ -25,6 +34,15 @@ export function InviteLinkInput({ inviteLink }: InviteLinkInputProps) {
       {/* <IconButton className="-mr-2" onClick={copyInviteLink}> */}
       <Copy className="size-5" onClick={copyInviteLink} />
       {/* </IconButton> */}
-    </InputRoot>
+
+      <Image
+        src={qrCode}
+        alt='Qr Code '
+        width={300}
+        height={100}
+      />
+
+
+    </InputRoot >
   )
 }

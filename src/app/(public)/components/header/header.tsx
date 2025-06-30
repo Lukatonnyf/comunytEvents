@@ -12,12 +12,22 @@ export default function Header() {
     setShowMenuBar(!showMenuBar)
   }
   const router = useRouter();
+
+  function returnPage() {
+    const url = window.location.href
+    if (url.includes("/profile/")) {
+      router.push("/")
+    } else {
+      router.back()
+    }
+  }
+
   return (
     <div className="bg-secondary w-full fixed z-10 dark:bg-secondary
   flex justify-between items-center h-16 px-3 border-b border-b-border sm:px-10">
       <div className="hidden md:flex left-6">
         <button
-          onClick={() => router.back()}
+          onClick={returnPage}
           className="
           bg-tertiary rounded-full p-2 z-50 smt-5 ml-5 transition-all duration-500 hover:bg-secondary"
         >
