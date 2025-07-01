@@ -2,83 +2,106 @@
 
 import { Input } from "@/shadcn-uis/ui/input";
 import { Label } from "@radix-ui/react-label";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "../../../../shadcn-uis/ui/card";
-
-import { StaticImageData } from "next/image";
+import {
+  Card, CardHeader, CardTitle, CardDescription,
+  CardContent, CardFooter
+} from "../../../../shadcn-uis/ui/card";
 import { FormWrapper } from "@/providers/ui/formWrapper";
+import axios from "axios";
+import Button from "@/ui/button";
+import { useRouter } from "next/navigation";
 
 interface FormValues {
-  name: string,
-  email?: string,
-  location: string,
-  hour: Date,
-  image?: StaticImageData | null | string,
+  name: string;
+  email?: string;
+  location: string;
+  hour: Date;
 }
 
-
-export default function FormPage() {
-
+export default function FormPageClient() {
+  const router = useRouter()
 
   const handleSubmit = async (data: FormValues) => {
     console.log("dados q serão enviados para a API: ", data)
+    data.hour = new Date(data.hour);
+    alert("cadastrado com sucesso!")
+    router.push('/')
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post('/api/createEvent', data, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log("resposta da API: ", response.data)
 
-    // try {
-    //   const response = await axios.post('/api/feedback', data)
-    //   console.log("resposta da API: ", response.data, { text: "foifoi" })
 
-
-    //   if (response.data.ok) {
-
-    //     router.push('https://lukatonnysferreiraportifolio.vercel.app/')
-    //   }
-    // } catch (error) {
-    //   if (axios.isAxiosError(error)) {
-    //     console.error('erro Axios', error.response?.data || error.message)
-    //   } else {
-    //     console.error('erro ao enviar dados:', error)
-    //   }
-    // }
-
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('erro Axios', error.response?.data || error.message)
+      } else {
+        console.error('erro ao enviar dados:', error)
+      }
+    }
   }
 
+
   return (
-    <FormWrapper defaultValues={{ name: "", email: "", location: "", hour: new Date(), image: "" }}
+    <FormWrapper
+      defaultValues={{
+        name: "", email: "", location: "", hour: new Date(),
+      }}
       onSubmit={handleSubmit}
-      className="w-full max-w-sm h-full flex flex-col
-      gap-5 rounded-xl  py-6 shadow-sm
-      text-[#a9a9a9]
-    bg-white/3  backdrop-blur-lg
-       border border-bordercomponents">
+      className="w-full lg:w-full h-full flex flex-col gap-5 rounded-xl py-6 shadow-sm text-[#a9a9a9] bg-white/3 backdrop-blur-lg border border-bordercomponents"
+    >
       {(methods) => (
-        <Card >
+        <Card className="w-full border-none">
           <CardHeader>
-            <CardTitle>Crie Seu Própio evento</CardTitle>
+            <CardTitle>Crie Seu Próprio evento</CardTitle>
             <CardDescription>Descreva as Informações do seu evento abaixo:</CardDescription>
           </CardHeader>
-
-          {/* MAIN */}
           <CardContent>
             <section>
               <div className="flex flex-col gap-6">
-                {/* INPUT NAME */}
+                {/** Inputs */}
+                {[
+                  { id: "name", type: "text", label: "Nome", placeholder: "Digite seu Nome" },
+                  { id: "email", type: "email", label: "Email", placeholder: "Digite seu Email" },
+                  { id: "location", type: "text", label: "Endereço", placeholder: "Digite o Endereço do seu evento" },
+                ].map(({ id, type, label, placeholder }) => (
+                  <div className="grid gap-2" key={id}>
+                    <Label htmlFor={id}>{label}</Label>
+                    <Input
+                      id={id}
+                      type={type}
+                      placeholder={placeholder}
+                      className="border border-bordercomponents outline-none"
+                      required
+                      {...methods.register(id as keyof FormValues)}
+                    />
+                  </div>
+                ))}
+
                 <div className="grid gap-2">
-                  <Label htmlFor="text">Nome</Label>
+                  <Label htmlFor="date">Data do Evento</Label>
                   <Input
-                    id="text"
-                    type="text"
-                    placeholder="Digite seu Nome"
-                    className=" border border-bordercomponents outline-none  "
+                    id="date"
+                    type="date"
+                    className="border border-bordercomponents outline-none"
                     required
-                    {...methods.register("name")}
+                    {...methods.register("hour")}
                   />
                 </div>
               </div>
             </section>
           </CardContent>
 
-          {/* FOOTER */}
           <CardFooter>
-            <p>Card Footer</p>
+            <Button
+              // onClick={goToHome
+              type="submit" className="w-full">
+              Enviar Feedback
+            </Button>
           </CardFooter>
         </Card>
       )}

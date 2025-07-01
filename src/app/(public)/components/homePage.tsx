@@ -14,7 +14,9 @@ import Button from "@/ui/button";
 import DateCurrent from '../features/currentDate';
 import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode'
-import Carousel from './carousel';
+
+import Events from '../events/[id]/page';
+// import Events from '../events/[id]/page';
 
 type TokenPayload = {
   userId: string
@@ -107,8 +109,8 @@ export default function HomePage({ className }: { className: string; }) {
 
       {/* {showFormActivity && <Form showForm={showForm} />} */}
 
-      <Carousel />
-
+      {/* <Carousel /> */}
+      <Events />
 
     </div >
 

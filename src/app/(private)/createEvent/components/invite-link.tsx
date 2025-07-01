@@ -42,6 +42,7 @@ export function InviteLinkInput({ inviteLink }: InviteLinkInputProps) {
         height={100}
       />
 
+      <button onClick={generate}>gerar qr code</button>
 
     </InputRoot >
   )
