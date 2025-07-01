@@ -40,7 +40,7 @@ export default function Events() {
         <ul className="flex overflow-auto ">
           {
             dados.length > 0 ? (
-              dados.map((item, index) => (
+              dados.map((item) => (
                 <li
                   // ref={(el) => handleCardRef(el, index)}
                   className='flex flex-col justify-between gap-2 md:max-w-[25vw] w-full

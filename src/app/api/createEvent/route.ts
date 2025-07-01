@@ -28,8 +28,8 @@ export async function POST(request: NextRequest) {
 const authHeader = request.headers.get("authorization");
   const token = authHeader?.split(" ")[1];
   let userId;
-  let userName: string;
-  let userEmail: string;
+  // let userName: string;
+
 
 
 
@@ -37,16 +37,17 @@ const authHeader = request.headers.get("authorization");
     return NextResponse.json({ error: "Token não fornecido" }, { status: 401 });
   }
 
-
+  let userEmail: string;
 
   try {
+
     const decoded = jwt.verify(token, JWT_SECRET) as {
       userId: string;
       name: string;
       email: string;
     };
 
-  ({ userId, name: userName, email: userEmail } = decoded);
+  ({ userId,  email: userEmail } = decoded);
 
 
     if (!userId) {
