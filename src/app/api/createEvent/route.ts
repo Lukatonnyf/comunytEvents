@@ -77,7 +77,7 @@ const authHeader = request.headers.get("authorization");
       location,
       hour: new Date(hour),
       creator: new ObjectId(userId),
-      criador: email
+      criador: userEmail ?? email,
     });
 
     console.log("evento salvo:", saveEvents.insertedId);

@@ -6,18 +6,19 @@ import Card from "@/ui/Cards"
 import { ArrowRight, Clock, MapPin, User, SquarePen, Share2, EllipsisVertical } from "lucide-react"
 import Button from "@/ui/button"
 
-
-// type Evento = {
-//   _id: string,
-//   name: string,
-//   data: string,
-//   location: string
-//   criador: string
-// }
-
+interface Evento {
+  _id: string;
+  name: string;
+  email: string;
+  location: string;
+  hour: Date | string;
+  image?: string;
+  creator?: string;
+  criador?: string;
+}
 export default function Events() {
 
-  const [dados, setDados] = useState<any[]>([]);
+  const [dados, setDados] = useState<Evento[]>([]);
 
   useEffect(() => {
     fetch('/api/event')
