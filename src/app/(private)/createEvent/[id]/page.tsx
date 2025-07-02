@@ -35,22 +35,21 @@ export default async function EnviarConvites({ params }: PageProps) {
     <div className="min-h-dvh flex flex-col justify-center gap-16 p-5">
       <section className="flex flex-col gap-8 justify-center items-center  mt-16 lg:flex-row">
         {/* <Image src={"test"} alt="devstage" width={108.5} height={30} /> */}
-        <div className='flex-1'>
+        <div className='flex-1 '>
           <div>
-
             <h1 className="text-4xl text-center leading-none font-heading font-medium flex flex-col md:text-7xl md:text-left">
               <span className="text-blue">Community</span> Events
             </h1>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 mt-10 md:mt-5">
             <div className="space-y-3">
               <h2 className="text-gray-200 text-xl font-heading font-semibold leading-none">
                 Crie seus Eventos
               </h2>
               <p className="text-gray-300">
                 Convide as pessoas mais importantes para você e crie memórias incríveis!
-                É só compartilhar o link abaixo e acompanhar as
+                É só compartilhar o link que será gerado pós a criação do evento e acompanhar as
                 confirmações:
               </p>
             </div>

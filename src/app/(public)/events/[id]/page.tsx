@@ -6,6 +6,17 @@ import Card from "@/ui/Cards"
 import { ArrowRight, Clock, MapPin, User, SquarePen, Share2, EllipsisVertical } from "lucide-react"
 import Button from "@/ui/button"
 
+import { useRouter } from 'next/navigation';
+import { jwtDecode } from 'jwt-decode'
+
+// import Events from '../events/[id]/page';
+
+type TokenPayload = {
+  userId: string
+  email: string
+  exp: number // tempo de expiração
+}
+
 interface Evento {
   _id: string;
   name: string;
@@ -28,6 +39,46 @@ export default function Events() {
   }, []);
 
 
+  // validação pra criar evento:
+
+  const router = useRouter();
+
+  const validade = ({ page }: { page: string }) => {
+
+    const token = localStorage.getItem('token')
+
+    if (!token) {
+      // Nenhum token: usuário não está logado
+      return router.push('/login')
+    }
+
+    try {
+      const decoded = jwtDecode<TokenPayload>(token)
+
+      const agora = Date.now() / 1000 // em segundos
+      if (decoded.exp < agora) {
+        // Token expirado
+        localStorage.removeItem('token')
+        return router.push('/login')
+      }
+
+      // Usuário está logado → redirecionar
+      router.push(`/${page}/${decoded.userId}`)
+    } catch {
+      // Token inválido
+      localStorage.removeItem('token')
+      router.push('/login')
+    }
+  }
+
+  // const handleClick = () => {
+  //   validade({ page: "profile" })
+  // }
+
+  const createInvite = () => {
+    validade({ page: "createEvent" })
+  }
+
   return (
     <section className='w-full  overflow-x-hidden'>
       <h1 className="w-full px-1 text-2xl flex justify-between mt-10 mb-5 font-bold">
@@ -41,7 +92,7 @@ export default function Events() {
         <ul className="flex overflow-auto ">
           {
             dados.length > 0 ? (
-              dados.map((item) => (
+              dados.map((item, i) => (
                 <li
                   // ref={(el) => handleCardRef(el, index)}
                   className='flex flex-col justify-between gap-2 md:max-w-[25vw] w-full
@@ -49,7 +100,9 @@ export default function Events() {
                   key={item._id}>
 
                   <div className='flex flex-row flex-wrap gap-5'>
-                    <Card className='w-full md:w-[100rem] lg:max-w-[19rem] border-l-4 border-bordercustomizada h-[23rem] bg-secondary p-0 flex flex-col justify-between pb-4 '>
+                    <Card className={`min-w-[17rem] w-full md:w-[100rem] lg:max-w-[19rem]  h-[23rem] bg-secondary p-0 flex flex-col justify-between pb-4
+                      ${i === 0 ? "border-l-4 border-bordercustomizada" : "border-none"}
+                      `}>
                       <div className='flex flex-col rounded-t-xl justify-center items-center bg-tertiary h-[15dvh]'>
                         <h1 className='font-bold text-3xl'>25</h1>
                         <p>MAI</p>
@@ -90,10 +143,8 @@ export default function Events() {
               <>
                 <div className='col-span-full   flex flex-col justify-center items-center'>
                   <div className='flex flex-col  justify-center items-center'>
-                    <p className='font-semibold text-2xl'>Ainda não possuo Feedbacks :&#40;</p>
-                    <Button
-                      className='border border-bordercomponents px-5 py-2 mt-2 '
-                      onClick={() => window.open('https://feedbacks-page-two.vercel.app/', "_blank")}>Deixe seu Feedback aqui</Button>
+                    <p className='font-semibold text-2xl'>Carregando Eventos....</p>
+                    <Button onClick={createInvite}>Caso não possua eventos, crie-os aqui! </Button>
                   </div>
                 </div >
               </>

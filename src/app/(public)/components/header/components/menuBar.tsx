@@ -102,14 +102,14 @@ const MenuBar = () => {
         <div className="flex flex-row  gap-1 w-full ">
           <button
             onClick={handleClick}
-            className="rounded-sm bg-tertiary w-full py-4  transition-all duration-400  hover:bg-background">Minha conta</button>
-          <button className="rounded-sm bg-tertiary w-full py-4 transition-all duration-400   hover:bg-background">Eventos</button>
+            className="rounded-sm bg-tertiary w-full py-4  transition-all duration-400 focus:bg-background  hover:bg-background">Minha conta</button>
+          <button className="rounded-sm bg-tertiary w-full py-4 transition-all duration-400 focus:bg-background     hover:bg-background">Eventos</button>
         </div>
         <div className="flex flex-row gap-1 w-full">
-          <button className="rounded-sm  bg-tertiary w-full py-4 transition-all duration-400   hover:bg-background">Galeria</button>
+          <button className="rounded-sm  bg-tertiary w-full py-4 transition-all duration-400  focus:bg-background    hover:bg-background">Galeria</button>
           <button
             onClick={exitAccount}
-            className="rounded-sm bg-tertiary w-full py-4 transition-all duration-400   hover:bg-background">Sair</button>
+            className="rounded-sm bg-tertiary w-full py-4 transition-all duration-400 focus:bg-background  hover:bg-background">Sair</button>
         </div>
 
         <h1>Acessibilidade</h1>

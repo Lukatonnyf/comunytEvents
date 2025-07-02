@@ -100,7 +100,7 @@ export default function FormPageClient() {
             <Button
               // onClick={goToHome
               type="submit" className="w-full">
-              Enviar Feedback
+              Criar Evento
             </Button>
           </CardFooter>
         </Card>
