@@ -111,6 +111,7 @@ export default function EventosPage() {
                 .filter(item => item.typeEvent === 'public')
                 .map(item => (
                   <CardEentsCustomized
+                    key={item._id}
                     keyCard={item._id}
                     name={item.name}
                     locaction={item.location}
