@@ -4,7 +4,8 @@ import { Input } from "@/shadcn-uis/ui/input";
 import { Label } from "@radix-ui/react-label";
 import {
   Card, CardHeader, CardTitle, CardDescription,
-  CardContent, CardFooter
+  CardContent, CardFooter,
+  CardAction
 } from "../../../../shadcn-uis/ui/card";
 import { FormWrapper } from "@/providers/ui/formWrapper";
 import axios from "axios";
@@ -16,6 +17,7 @@ interface FormValues {
   email?: string;
   location: string;
   hour: Date;
+  typeEvent: 'public' | 'private';
 }
 
 export default function FormPageClient() {
@@ -49,17 +51,41 @@ export default function FormPageClient() {
   return (
     <FormWrapper
       defaultValues={{
-        name: "", email: "", location: "", hour: new Date(),
+        name: "", email: "", location: "", hour: new Date(), typeEvent: 'public'
       }}
       onSubmit={handleSubmit}
       className="w-full lg:w-full h-full flex flex-col gap-5 rounded-xl py-6 shadow-sm text-[#a9a9a9] bg-white/3 backdrop-blur-lg border border-bordercomponents"
     >
       {(methods) => (
         <Card className="w-full border-none">
-          <CardHeader>
+          <CardHeader className="flex flex-col">
             <CardTitle>Crie Seu Próprio evento</CardTitle>
             <CardDescription>Descreva as Informações do seu evento abaixo:</CardDescription>
+
+
+            <CardAction className="flex flex-row gap-5 text-xs mt-5">
+              <div className="flex gap-2">
+                <Label htmlFor="event-type-public">Evento Público</Label>
+                <input
+                  type="radio"
+                  id="event-type-public"
+                  value="public"
+                  {...methods.register("typeEvent")}
+                />
+              </div>
+
+              <div className="flex gap-2">
+                <Label htmlFor="event-type-private">Evento Privado</Label>
+                <input
+                  type="radio"
+                  id="event-type-private"
+                  value="private"
+                  {...methods.register("typeEvent")}
+                />
+              </div>
+            </CardAction>
           </CardHeader>
+
           <CardContent>
             <section>
               <div className="flex flex-col gap-6">

@@ -65,6 +65,11 @@ export default function HomePage({ className }: { className: string; }) {
   }
 
 
+  const irSLA = () => {
+    validade({ page: "eventosPage" })
+  }
+
+
 
   console.log('MONGODB_URI:', process.env.MONGODB_URI);
   return (
@@ -91,7 +96,7 @@ export default function HomePage({ className }: { className: string; }) {
           </Button>
 
           <Button
-
+            onClick={irSLA}
           >
             <span className="flex sm:justify-center items-center gap-2 font-normal">
               <BiSolidEnvelope className={`w-4 h-4 ${poppins.className} font-medium`} /> Enviar Convites

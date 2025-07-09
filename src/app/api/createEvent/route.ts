@@ -60,7 +60,7 @@ const authHeader = request.headers.get("authorization");
 
 
   try {
-    const { name, email, location, hour } = await request.json();
+    const { name, email, location, hour,  typeEvent} = await request.json();
 
     if (!name || !email || !location || !hour ) {
       return NextResponse.json({ error: "Campos faltando" }, { status: 400 });
@@ -76,6 +76,7 @@ const authHeader = request.headers.get("authorization");
       email,
       location,
       hour: new Date(hour),
+      typeEvent,
       creator: new ObjectId(userId),
       criador: userEmail ?? email
     });
