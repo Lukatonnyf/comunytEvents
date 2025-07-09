@@ -35,7 +35,7 @@ interface Evento {
 export default function Events() {
   const [dados, setDados] = useState<Evento[]>([]);
   const [loading, setLoading] = useState(true)
-  const [visible, setVisible] = useState(5);
+  const [visible] = useState(5);
 
   useEffect(() => {
     fetch('/api/event')

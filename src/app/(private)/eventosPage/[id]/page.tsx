@@ -1,8 +1,8 @@
 "use client"
 import { useState, useEffect } from "react";
 
-import { useRouter } from 'next/navigation';
-import { jwtDecode } from 'jwt-decode'
+// import { useRouter } from 'next/navigation';
+// import { jwtDecode } from 'jwt-decode'
 import SkeletonCard from '@/app/(private)/eventosPage/component/skeletonCard'
 import Button from "@/ui/button";
 import Card from "@/ui/Cards";
@@ -10,11 +10,11 @@ import CardEentsCustomized from "../component/cardEvent";
 
 
 
-type TokenPayload = {
-  userId: string
-  email: string
-  exp: number // tempo de expiração
-}
+// type TokenPayload = {
+//   userId: string
+//   email: string
+//   exp: number // tempo de expiração
+// }
 
 interface Evento {
   _id: string;

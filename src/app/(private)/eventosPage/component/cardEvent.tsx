@@ -28,7 +28,7 @@ export default function CardEentsCustomized({ name, locaction, day, month, creat
   useEffect(() => {
     fetch('/api/event')
       .then(res => res.json())
-      .then(data => {
+      .then(() => {
         // setDados(data);
         setLoading(false)
       })
