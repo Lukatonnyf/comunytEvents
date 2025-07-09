@@ -12,7 +12,7 @@ interface childrensProps {
   keyCard: React.Key;
   name: React.ReactNode;
   locaction: React.ReactNode;
-  description?: React.ReactNode;
+  // description?: React.ReactNode;
   dateComplete: React.ReactNode;
   day: React.ReactNode;
   month: React.ReactNode;
@@ -20,7 +20,7 @@ interface childrensProps {
 }
 
 
-export default function CardEentsCustomized({ name, locaction, description, day, month, creator, dateComplete, keyCard }: childrensProps) {
+export default function CardEentsCustomized({ name, locaction, day, month, creator, dateComplete, keyCard }: childrensProps) {
 
   // const [dados, setDados] = useState<Evento[]>([]);
   const [loading, setLoading] = useState(true)

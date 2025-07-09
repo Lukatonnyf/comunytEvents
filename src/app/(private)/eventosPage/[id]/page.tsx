@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode'
-import { CardAction } from "@/shadcn-uis/ui/card";
 import SkeletonCard from '@/app/(private)/eventosPage/component/skeletonCard'
 import Button from "@/ui/button";
 import Card from "@/ui/Cards";
@@ -50,41 +49,39 @@ export default function EventosPage() {
       });;
   }, []);
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  const validade = ({ page }: { page: string }) => {
+  // const validade = ({ page }: { page: string }) => {
 
-    const token = localStorage.getItem('token')
+  //   const token = localStorage.getItem('token')
 
-    if (!token) {
-      // Nenhum token: usuário não está logado
-      return router.push('/login')
-    }
+  //   if (!token) {
+  //     // Nenhum token: usuário não está logado
+  //     return router.push('/login')
+  //   }
 
-    try {
-      const decoded = jwtDecode<TokenPayload>(token)
+  //   try {
+  //     const decoded = jwtDecode<TokenPayload>(token)
 
-      const agora = Date.now() / 1000 // em segundos
-      if (decoded.exp < agora) {
-        // Token expirado
-        localStorage.removeItem('token')
-        return router.push('/login')
-      }
+  //     const agora = Date.now() / 1000 // em segundos
+  //     if (decoded.exp < agora) {
+  //       // Token expirado
+  //       localStorage.removeItem('token')
+  //       return router.push('/login')
+  //     }
 
-      // Usuário está logado → redirecionar
-      router.push(`/${page}/${decoded.userId}`)
-    } catch {
-      // Token inválido
-      localStorage.removeItem('token')
-      router.push('/login')
-    }
-  }
+  //     // Usuário está logado → redirecionar
+  //     router.push(`/${page}/${decoded.userId}`)
+  //   } catch {
+  //     // Token inválido
+  //     localStorage.removeItem('token')
+  //     router.push('/login')
+  //   }
+  // }
 
-  function EventPublics() {
-    const publicEvents = dados.filter(evento => evento.typeEvent === 'public');
-    // You can use publicEvents as needed, e.g., set state or log
-    console.log(publicEvents);
-  }
+  const publicEvents = dados.filter(evento => evento.typeEvent === 'public');
+  // You can use publicEvents as needed, e.g., set state or log
+  console.log(publicEvents);
 
   return (
     <div className="w-full h-full flex flex-col  bg-red-500 justify-center items-center pt-50">
