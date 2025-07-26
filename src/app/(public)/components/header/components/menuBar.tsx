@@ -96,6 +96,10 @@ const MenuBar = () => {
   }
 
 
+  const goEvents = () => {
+    router.push('/eventosPage/all')
+  }
+
   return (
     <Card className="fixed  z-40 top-17 right-6 w-[16rem] h-[22rem]] p-5 gap-5">
       <h1 className="font-bold text-xl">Menu</h1>
@@ -105,10 +109,14 @@ const MenuBar = () => {
           <button
             onClick={handleClick}
             className="rounded-sm bg-tertiary w-full py-4  transition-all duration-400 focus:bg-background  hover:bg-background">Minha conta</button>
-          <button className="rounded-sm bg-tertiary w-full py-4 transition-all duration-400 focus:bg-background     hover:bg-background">Eventos</button>
+          <button
+            onClick={goEvents}
+            className="rounded-sm bg-tertiary w-full py-4 transition-all duration-400 focus:bg-background     hover:bg-background">Eventos</button>
         </div>
         <div className="flex flex-row gap-1 w-full">
-          <button className="rounded-sm  bg-tertiary w-full py-4 transition-all duration-400  focus:bg-background    hover:bg-background">Galeria</button>
+          <button
+            onClick={() => router.push('/')}
+            className="rounded-sm  bg-tertiary w-full py-4 transition-all duration-400  focus:bg-background    hover:bg-background">Home</button>
           <button
             onClick={exitAccount}
             className="rounded-sm bg-tertiary w-full py-4 transition-all duration-400 focus:bg-background  hover:bg-background">Sair</button>

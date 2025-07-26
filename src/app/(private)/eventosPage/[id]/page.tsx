@@ -46,12 +46,12 @@ export default function EventosPage() {
 
   const publicEvents = dados.filter(evento => evento.typeEvent === 'public');
   // You can use publicEvents as needed, e.g., set state or log
-  console.log(publicEvents);
+  // console.log(publicEvents);
 
   return (
-    <div className="w-full h-full flex flex-col  justify-center items-center pt-50">
+    <div className="w-full h-full flex flex-col  justify-center items-center pt-50 px-5">
 
-      <Card className="bg-blue-400 w-full flex  flex-row p-5 gap-5 max-w-[1240px]">
+      <Card className="w-full flex  flex-row p-5 gap-5 max-w-[1240px]">
         <Button
           className={`${eventPublic ? 'bg-blue-600 text-white' : 'bg-gray-200 text-zinc-400'} px-4 py-2 rounded`}
           onClick={() => {
@@ -69,7 +69,7 @@ export default function EventosPage() {
         </Button>
       </Card>
 
-      <ul className="w-full flex  flex-wrap justify-start items-center max-w-[1240px]">
+      <ul className="w-full flex flex-wrap  md:gap-10 justify-center md:justify-start items-start max-w-[1240px]">
         {loading
           ? Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
           : (
@@ -79,8 +79,25 @@ export default function EventosPage() {
                 dados
                   .filter(item => item.typeEvent === 'public')
                   .map(item => (
+                    <li className="w-[18rem] m-2" key={item._id}>
+                      <CardEentsCustomized
+                        keyCard={item._id}
+                        name={item.name}
+                        locaction={item.location}
+                        dateComplete={new Date(item.hour).toLocaleString()}
+                        day={new Date(item.hour).toLocaleDateString("pt-BR", { day: '2-digit' })}
+                        month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
+                        creator={item.name}
+                      />
+                    </li>
+                  ))
+              )}
+
+              {eventPublic && dados
+                .filter(item => item.typeEvent === 'public')
+                .map(item => (
+                  <li className="w-[18rem] m-2" key={item._id}>
                     <CardEentsCustomized
-                      key={item._id}
                       keyCard={item._id}
                       name={item.name}
                       locaction={item.location}
@@ -89,22 +106,7 @@ export default function EventosPage() {
                       month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
                       creator={item.name}
                     />
-                  ))
-              )}
-
-              {eventPublic && dados
-                .filter(item => item.typeEvent === 'public')
-                .map(item => (
-                  <CardEentsCustomized
-                    key={item._id}
-                    keyCard={item._id}
-                    name={item.name}
-                    locaction={item.location}
-                    dateComplete={new Date(item.hour).toLocaleString()}
-                    day={new Date(item.hour).toLocaleDateString("pt-BR", { day: '2-digit' })}
-                    month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
-                    creator={item.name}
-                  />
+                  </li>
                 ))}
 
               {/* Eventos Privados */}

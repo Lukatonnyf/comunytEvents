@@ -1,12 +1,33 @@
 "use client"
 import { ArrowLeft, Bell, PersonStanding } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 import MenuBar from "./components/menuBar";
 import { useRouter } from "next/navigation";
 
 
 export default function Header() {
+
+
+
+
+
   /**@TENHO_QUE_EXPORTAR_ESSE_SHOW_MENU => */ const [showMenuBar, setShowMenuBar] = useState(false);
+  const showMenuBarRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showMenuBarRef.current && !showMenuBarRef.current.contains(event.target as Node)) {
+        setShowMenuBar(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+
 
   function shoMenuFunction() {
     setShowMenuBar(!showMenuBar)
@@ -61,7 +82,11 @@ export default function Header() {
 
 
 
-      {showMenuBar && <MenuBar />}
+      {showMenuBar && (
+        <div ref={showMenuBarRef}>
+          <MenuBar />
+        </div>
+      )}
     </div>
 
   );

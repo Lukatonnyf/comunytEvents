@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react"
 
 import Card from "@/ui/Cards"
-import { ArrowRight, Clock, MapPin, User, SquarePen, Share2, EllipsisVertical } from "lucide-react"
+import { ArrowRight, Clock, MapPin, User } from "lucide-react"
 import Button from "@/ui/button"
-
 import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode'
 import SkeletonCard from "@/app/(private)/eventosPage/component/skeletonCard"
 
-// import Events from '../events/[id]/page';
+
+
 
 type TokenPayload = {
   userId: string
@@ -84,26 +84,29 @@ export default function Events() {
     }
   }
 
-  // const handleClick = () => {
-  //   validade({ page: "profile" })
-  // }
 
   const createInvite = () => {
-    validade({ page: "createEvent" })
+    validade({ page: "" })
   }
 
+
+  const verEventos = () => {
+    validade({ page: "eventosPage" })
+  }
 
 
   return (
     <section className='w-full flex flex-col' >
-      <h1 className="w-full px-1 text-2xl flex justify-between mt-10 mb-5 font-bold">
+      <h1 className="w-full px-1 text-2xl flex justify-between mt-10 mb-5 font-bold ">
         Próximo Evento
-        <span className="flex items-center gap-1 text-sm text-text-secondary transition-all duration-300 hover:text-txttertiary-hover font-normal">
+        <span
+          onClick={verEventos}
+          className="flex items-center gap-1 text-sm text-text-secondary transition-all duration-300 hover:text-txttertiary-hover font-normal">
           Ver Todos <ArrowRight className="size-5 font-normal" />
         </span>
       </h1>
 
-      <div className="flex flex-row">
+      <div className="flex flex-row  ">
         {
           loading
             ? Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)
@@ -111,13 +114,13 @@ export default function Events() {
 
               <>
                 <div className="overflow-x-hidden ">
-                  <ul className="flex overflow-auto ">
+                  <ul className="flex overflow-auto sm:gap-5  md:gap-0 scrollbar-none ">
                     {
                       dados.length > 0 ? (
                         dados.slice(0, visible).map((item, i) => (
                           <li
-                            className='flex flex-col justify-between gap-2 md:max-w-[25vw] w-full
-                            min-h-[35dvh] p-5 rounded-xl '
+                            className='flex flex-col justify-between gap-2 lg:gap-0 md:max-w-[30vw] lg:max-w-[25vw] w-full
+                            min-h-[15dvh] p-5 rounded-xl  '
                             key={item._id}>
 
                             <div className='flex flex-row flex-wrap gap-5'>
@@ -131,28 +134,37 @@ export default function Events() {
                                 </div>
 
                                 <section className='flex flex-col h-full gap-3'>
-                                  <main className='flex flex-col justify-between p-3 h-full gap-3'>
+                                  <main className='flex flex-col p-3 h-full gap-3'>
                                     <h1 className='font-bold text-xl'>{item.name}</h1>
                                     <ul className='text-text-secondary'>
+                                      {/* Hora do evento */}
                                       <li className='flex items-center'><Clock className='h-4' />{new Date(item.hour).toLocaleDateString()}</li>
-                                      <li className='flex items-center'><MapPin className='h-4' />{item.location}</li>
+                                      {/* Local do evento */}
+                                      <a
+                                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <li className='flex items-center'><MapPin className='h-4' />{item.location}</li>
+                                      </a>
+                                      {/*Criador do Evento  */}
                                       <li className='flex flex-col '>
                                         <span className="flex items-center"><User className='h-4' />Criado por:</span>
                                         <span className="border-l ml-1 pl-2 border-primary">{item.criador}</span>
                                       </li>
-
                                     </ul>
 
-                                    <div className='flex flex-row gap-2'>
+                                    {/* TENHO QUE ARRUMAR ESSA PARTE FUTURAMENTE, PONDO FUNCIONALDIADE */}
+                                    {/* <div className='flex flex-row gap-2'>
                                       <button><SquarePen className='p-2 rounded-full size-8 bg-tertiary' /></button>
                                       <button><Share2 className='p-2 rounded-full size-8 bg-tertiary' /></button>
                                       <button><EllipsisVertical className='p-2 rounded-full size-8 bg-tertiary' /></button>
-                                    </div>
+                                    </div> */}
                                   </main>
 
                                   <footer className='flex justify-between border-t p-3'>
-                                    <p>imagens...</p>
-                                    <span className='text-green-700'>8 Confirmados...</span>
+                                    <p className="text-pink-300 font-bold">CommunityEvents</p>
+                                    {/* <span className='text-green-700'>8 Confirmados...</span> */}
                                   </footer>
                                 </section>
                               </Card>

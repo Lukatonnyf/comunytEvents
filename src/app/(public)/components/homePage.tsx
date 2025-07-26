@@ -7,7 +7,7 @@ const poppins = Poppins({
   weight: ['200', '400', '500', '700']
 })
 // import Card, { CardEvents } from "./card";
-import { BiPlus, BiSolidCameraPlus, BiSolidEnvelope } from "react-icons/bi";
+import { BiPlus, BiSolidEnvelope } from "react-icons/bi";
 
 import Card from "@/ui/Cards";
 import Button from "@/ui/button";
@@ -28,7 +28,6 @@ type TokenPayload = {
 
 export default function HomePage({ className }: { className: string; }) {
   const router = useRouter();
-
 
 
   /**@VALIDATE_USER */
@@ -66,17 +65,17 @@ export default function HomePage({ className }: { className: string; }) {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    console.log("[TOKEN]", token)
+    // console.log("[TOKEN]", token)
 
     if (!token) return
 
     try {
       const decoded = jwtDecode<TokenPayload>(token)
-      console.log("[DECODED]", decoded)
+      // console.log("[DECODED]", decoded)
 
       const agora = Date.now() / 1000
       if (decoded.exp < agora) {
-        console.log("[EXPIRED TOKEN]", decoded.exp, "<", agora)
+        // console.log("[EXPIRED TOKEN]", decoded.exp, "<", agora)
         localStorage.removeItem('token')
         return
       }
@@ -102,7 +101,6 @@ export default function HomePage({ className }: { className: string; }) {
 
 
 
-  console.log('MONGODB_URI:', process.env.MONGODB_URI);
   return (
     <div className={`${className} mt-16
     w-full h-full min-h-0 bg-bg-primary p-[30px]`}	>
@@ -134,11 +132,13 @@ export default function HomePage({ className }: { className: string; }) {
             </span>
           </Button>
 
-          <Button className="bg-secondary">
+
+          {/* Adicionar futuramente */}
+          {/* <Button className="bg-secondary">
             <span className="flex sm:justify-center items-center gap-2  font-normal ">
               < BiSolidCameraPlus className={`w-4 h-4 ${poppins.className} font-medium`} /> Compartilhar Fotos
             </span>
-          </Button>
+          </Button> */}
         </div>
       </Card>
 
