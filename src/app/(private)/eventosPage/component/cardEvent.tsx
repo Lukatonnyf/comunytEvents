@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 
 import Card from "@/ui/Cards"
-import { Clock, MapPin, User, SquarePen, Share2, EllipsisVertical } from "lucide-react"
+import { Clock, MapPin, User } from "lucide-react"
 import SkeletonCard from "./skeletonCard";
 
 
@@ -20,7 +20,7 @@ interface childrensProps {
 }
 
 
-export default function CardEentsCustomized({ name, locaction, day, month, creator, dateComplete, keyCard }: childrensProps) {
+export default function CardEentsCustomized({ name, locaction, creator, dateComplete }: childrensProps) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function CardEentsCustomized({ name, locaction, day, month, creat
                   <h1 className='font-bold text-xl'>{name}</h1>
                   <ul className='text-text-secondary'>
                     {/* Hora do evento */}
-                    <li className='flex items-center'><Clock className='h-4' />{day}</li>
+                    <li className='flex items-center'><Clock className='h-4' />{dateComplete}</li>
                     {/* Local do evento */}
                     <a
                       href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locaction)}`}

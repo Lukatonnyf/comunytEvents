@@ -1,10 +1,10 @@
 'use client'
 
 import { jwtDecode } from "jwt-decode";
-import { Calendar, Home, Settings } from "lucide-react";
+import { Calendar, Home } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
-import { BiNotification, BiPlus, BiCalendar } from "react-icons/bi";
+import { BiPlus, BiCalendar } from "react-icons/bi";
 
 interface AsideCardProps {
   className?: string;
