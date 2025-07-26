@@ -1,5 +1,6 @@
 "use client"
 import { Calendar, Home, Settings } from "lucide-react";
+import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { BiNotification, BiPlus } from "react-icons/bi";
 import { BiCalendar } from "react-icons/bi";
@@ -20,13 +21,13 @@ const ArrayMenu: Menus[] = [
     id: 1,
     icon: <Home />,
     name: "Inicio",
-    url: ""
+    url: "/"
   },
   {
     id: 2,
     icon: <Calendar />,
-    name: "Calendário",
-    url: ""
+    name: "Eventos",
+    url: "/eventosPage"
   },
   {
     id: 3,
@@ -64,6 +65,7 @@ export default function AsideCard({ className }: AsideCardProps) {
       <ul className="px-5 py-5  flex flex-col gap-5 h-full '">
         {
           ArrayMenu.map((item, i) => (
+
             <li
               onClick={() => setIsActiveItem(item.id)}
               className={`flex flex-row items-center gap-2
@@ -75,8 +77,10 @@ export default function AsideCard({ className }: AsideCardProps) {
                   : "text - gray - 800"
                 }`}
               key={i}>
-              <span>{item.icon}</span>
-              <p>{item.name}</p>
+              <Link href={item.url} className="flex items-center gap-2 w-full h-full">
+                <span>{item.icon}</span>
+                <p>{item.name}</p>
+              </Link>
             </li>
           ))
         }

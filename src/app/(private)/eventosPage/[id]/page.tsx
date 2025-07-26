@@ -9,13 +9,6 @@ import Card from "@/ui/Cards";
 import CardEentsCustomized from "../component/cardEvent";
 
 
-
-// type TokenPayload = {
-//   userId: string
-//   email: string
-//   exp: number // tempo de expiração
-// }
-
 interface Evento {
   _id: string;
   name: string;
@@ -49,64 +42,56 @@ export default function EventosPage() {
       });;
   }, []);
 
-  // const router = useRouter();
 
-  // const validade = ({ page }: { page: string }) => {
-
-  //   const token = localStorage.getItem('token')
-
-  //   if (!token) {
-  //     // Nenhum token: usuário não está logado
-  //     return router.push('/login')
-  //   }
-
-  //   try {
-  //     const decoded = jwtDecode<TokenPayload>(token)
-
-  //     const agora = Date.now() / 1000 // em segundos
-  //     if (decoded.exp < agora) {
-  //       // Token expirado
-  //       localStorage.removeItem('token')
-  //       return router.push('/login')
-  //     }
-
-  //     // Usuário está logado → redirecionar
-  //     router.push(`/${page}/${decoded.userId}`)
-  //   } catch {
-  //     // Token inválido
-  //     localStorage.removeItem('token')
-  //     router.push('/login')
-  //   }
-  // }
 
   const publicEvents = dados.filter(evento => evento.typeEvent === 'public');
   // You can use publicEvents as needed, e.g., set state or log
   console.log(publicEvents);
 
   return (
-    <div className="w-full h-full flex flex-col  bg-red-500 justify-center items-center pt-50">
+    <div className="w-full h-full flex flex-col  justify-center items-center pt-50">
 
-      <Card>
-        <Button onClick={() => {
-          setEventPublic(!eventPublic)
-          setEventPrivate(false)
-        }}>
+      <Card className="bg-blue-400 w-full flex  flex-row p-5 gap-5 max-w-[1240px]">
+        <Button
+          className={`${eventPublic ? 'bg-blue-600 text-white' : 'bg-gray-200 text-zinc-400'} px-4 py-2 rounded`}
+          onClick={() => {
+            setEventPublic(true);
+            setEventPrivate(false);
+          }}>
           Eventos Publicos</Button>
         <Button
+          className={`${eventPrivate ? 'bg-blue-600 text-white' : 'bg-gray-200 text-zinc-400'} px-4 py-2 rounded`}
           onClick={() => {
-            setEventPrivate(!eventPrivate)
-            setEventPublic(false)
+            setEventPrivate(true);
+            setEventPublic(false);
           }}>
           Eventos Privados
         </Button>
       </Card>
 
-      <ul className="w-ful flex  flex-wrap justify-start items-center max-w-[1240px] ">
+      <ul className="w-full flex  flex-wrap justify-start items-center max-w-[1240px]">
         {loading
           ? Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
           : (
             <>
               {/* Eventos Públicos */}
+              {!publicEvents && !eventPrivate && eventPublic && (
+                dados
+                  .filter(item => item.typeEvent === 'public')
+                  .map(item => (
+                    <CardEentsCustomized
+                      key={item._id}
+                      keyCard={item._id}
+                      name={item.name}
+                      locaction={item.location}
+                      dateComplete={new Date(item.hour).toLocaleString()}
+                      day={new Date(item.hour).toLocaleDateString("pt-BR", { day: '2-digit' })}
+                      month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
+                      creator={item.name}
+                    />
+                  ))
+              )}
+
               {eventPublic && dados
                 .filter(item => item.typeEvent === 'public')
                 .map(item => (
@@ -118,7 +103,7 @@ export default function EventosPage() {
                     dateComplete={new Date(item.hour).toLocaleString()}
                     day={new Date(item.hour).toLocaleDateString("pt-BR", { day: '2-digit' })}
                     month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
-                    creator={item.creator}
+                    creator={item.name}
                   />
                 ))}
 
@@ -134,9 +119,9 @@ export default function EventosPage() {
                       dateComplete={new Date(item.hour).toLocaleString()}
                       day={new Date(item.hour).toLocaleDateString("pt-BR", { day: '2-digit' })}
                       month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
-                      creator={item.creator}
+                      creator={item.name}
                     />
-                    <p className="bg-red-500">{item.typeEvent}</p>
+
                   </div>
                 ))}
             </>

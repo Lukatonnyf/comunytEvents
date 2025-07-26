@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 import Card from "@/ui/Cards"
 import { Clock, MapPin, User, SquarePen, Share2, EllipsisVertical } from "lucide-react"
+import SkeletonCard from "./skeletonCard";
 
 
 
@@ -12,7 +13,6 @@ interface childrensProps {
   keyCard: React.Key;
   name: React.ReactNode;
   locaction: React.ReactNode;
-  // description?: React.ReactNode;
   dateComplete: React.ReactNode;
   day: React.ReactNode;
   month: React.ReactNode;
@@ -21,15 +21,12 @@ interface childrensProps {
 
 
 export default function CardEentsCustomized({ name, locaction, day, month, creator, dateComplete, keyCard }: childrensProps) {
-
-  // const [dados, setDados] = useState<Evento[]>([]);
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch('/api/event')
       .then(res => res.json())
       .then(() => {
-        // setDados(data);
         setLoading(false)
       })
       .catch(
@@ -41,7 +38,13 @@ export default function CardEentsCustomized({ name, locaction, day, month, creat
 
 
 
-  if (loading) return <div>Carregando</div>
+  if (loading) {
+    return (
+      <div className="w-full h-full">
+        <SkeletonCard className="w-full" />
+      </div>
+    )
+  }
 
   return (
     <section>
@@ -53,7 +56,7 @@ export default function CardEentsCustomized({ name, locaction, day, month, creat
             <div className='flex flex-row flex-wrap gap-5'>
               <Card
                 className={`min-w-[17rem] w-full md:w-[100rem] lg:max-w-[19rem]  h-[23rem] bg-secondary p-0 flex flex-col justify-between pb-4`}>
-                <div className='flex flex-col rounded-t-xl justify-center items-center bg-tertiary h-[15dvh]'>
+                <div className='flex flex-col rounded-t-xl justify-center items-center bg-tertiary  h-[15dvh] '>
 
                   {/* Dia do Mês */}
                   <h1 className='font-bold text-3xl'>{day}</h1>

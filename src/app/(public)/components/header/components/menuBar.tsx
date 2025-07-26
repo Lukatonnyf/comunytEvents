@@ -75,8 +75,10 @@ const MenuBar = () => {
 
 
   function exitAccount() {
+
     try {
       const token = localStorage.getItem('token');
+
       if (token) {
         jwtDecode<TokenPayload>(token);
         localStorage.removeItem('token');

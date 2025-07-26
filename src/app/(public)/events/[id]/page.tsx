@@ -106,7 +106,7 @@ export default function Events() {
       <div className="flex flex-row">
         {
           loading
-            ? Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
+            ? Array.from({ length: 5 }).map((_, i) => <SkeletonCard key={i} />)
             : (
 
               <>

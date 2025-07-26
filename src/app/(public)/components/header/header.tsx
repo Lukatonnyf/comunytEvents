@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 
 export default function Header() {
-  const [showMenuBar, setShowMenuBar] = useState(false);
+  /**@TENHO_QUE_EXPORTAR_ESSE_SHOW_MENU => */ const [showMenuBar, setShowMenuBar] = useState(false);
 
   function shoMenuFunction() {
     setShowMenuBar(!showMenuBar)
