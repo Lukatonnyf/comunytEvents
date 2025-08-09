@@ -18,7 +18,7 @@ async function connectToDatabase(uri: string) {
 }
 
 export async function GET(
-  { params }: { params: { id: string } }
+req: NextRequest, { params }: { params: { id: string } }
 ) {
   try {
     const db = await connectToDatabase(process.env.MONGODB_URI!);
