@@ -98,7 +98,7 @@ export default function Events() {
   return (
     <section className='w-full flex flex-col' >
       <h1 className="w-full px-1 text-2xl flex justify-between mt-10 mb-5 font-bold ">
-        Próximo Evento
+        Próximos Eventos
         <span
           onClick={verEventos}
           className="flex items-center gap-1 text-sm text-text-secondary transition-all duration-300 hover:text-txttertiary-hover font-normal">

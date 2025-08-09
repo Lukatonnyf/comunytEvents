@@ -1,8 +1,8 @@
 "use client"
+// Import Hooks
 import { useState, useEffect } from "react";
 
-// import { useRouter } from 'next/navigation';
-// import { jwtDecode } from 'jwt-decode'
+// Import Components
 import SkeletonCard from '@/app/(private)/eventosPage/component/skeletonCard'
 import Button from "@/ui/button";
 import Card from "@/ui/Cards";
@@ -23,18 +23,19 @@ interface Evento {
 
 
 export default function EventosPage() {
-
   const [dados, setDados] = useState<Evento[]>([]);
   const [eventPublic, setEventPublic] = useState(true)
   const [eventPrivate, setEventPrivate] = useState(false)
   const [loading, setLoading] = useState(true)
 
+  // useEffect que faz o Fetch no BackEnd
   useEffect(() => {
     fetch('/api/event')
       .then(res => res.json())
       .then(data => {
-        setDados(data)
-        setLoading(false)
+        console.log('Eventos recebidos:', data);
+        setDados(data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err)
@@ -44,13 +45,13 @@ export default function EventosPage() {
 
 
 
+  // Filtra os eventos para ser Publico
   const publicEvents = dados.filter(evento => evento.typeEvent === 'public');
-  // You can use publicEvents as needed, e.g., set state or log
-  // console.log(publicEvents);
+
 
   return (
     <div className="w-full h-full flex flex-col  justify-center items-center pt-50 px-5">
-
+      {/* Buttons que alteram o tipo do  Evento de publico para privado, e vice e versa */}
       <Card className="w-full flex  flex-row p-5 gap-5 max-w-[1240px]">
         <Button
           className={`${eventPublic ? 'bg-blue-600 text-white' : 'bg-gray-200 text-zinc-400'} px-4 py-2 rounded`}
@@ -74,36 +75,39 @@ export default function EventosPage() {
           ? Array.from({ length: 3 }).map((_, i) => <SkeletonCard key={i} />)
           : (
             <>
-              {/* Eventos Públicos */}
+              {/* Impede que a página de ventos fique vazia, sempre setando um valor default*/}
               {!publicEvents && !eventPrivate && eventPublic && (
                 dados
                   .filter(item => item.typeEvent === 'public')
                   .map(item => (
                     <li className="w-[18rem] m-2" key={item._id}>
                       <CardEentsCustomized
+                        _id={item._id}
                         keyCard={item._id}
                         name={item.name}
                         locaction={item.location}
                         dateComplete={new Date(item.hour).toLocaleString()}
                         day={new Date(item.hour).toLocaleDateString("pt-BR", { day: '2-digit' })}
-                        month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
+                        month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' }).replace('.', '')}
                         creator={item.name}
                       />
                     </li>
                   ))
               )}
 
+              {/* Eventos Publicos */}
               {eventPublic && dados
                 .filter(item => item.typeEvent === 'public')
                 .map(item => (
                   <li className="w-[18rem] m-2" key={item._id}>
                     <CardEentsCustomized
+                      _id={item._id}
                       keyCard={item._id}
                       name={item.name}
                       locaction={item.location}
                       dateComplete={new Date(item.hour).toLocaleString()}
                       day={new Date(item.hour).toLocaleDateString("pt-BR", { day: '2-digit' })}
-                      month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
+                      month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' }).replace('.', '')}
                       creator={item.name}
                     />
                   </li>
@@ -115,12 +119,13 @@ export default function EventosPage() {
                 .map(item => (
                   <div key={item._id}>
                     <CardEentsCustomized
+                      _id={item._id}
                       keyCard={item._id}
                       name={item.name}
                       locaction={item.location}
                       dateComplete={new Date(item.hour).toLocaleString()}
                       day={new Date(item.hour).toLocaleDateString("pt-BR", { day: '2-digit' })}
-                      month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' })}
+                      month={new Date(item.hour).toLocaleDateString("pt-BR", { month: 'short' }).replace('.', '')}
                       creator={item.name}
                     />
 
@@ -129,9 +134,6 @@ export default function EventosPage() {
             </>
           )
         }
-
-
-
       </ul>
     </div >
   )
