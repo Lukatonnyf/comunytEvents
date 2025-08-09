@@ -95,6 +95,7 @@ export default function CardEentsCustomized({ _id, name, locaction, creator, dat
     }
   }
 
+  console.log(validade)
 
 
   // Skeleton para animação de loading dos elementos
