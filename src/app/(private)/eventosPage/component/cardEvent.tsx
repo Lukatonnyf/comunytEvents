@@ -1,7 +1,6 @@
 "use client"
 
 // Import Hoocks
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react"
 
 // Import Libs
@@ -59,8 +58,6 @@ const ArrayInputsConfirmacao: NumDeConfirmados[] = [
 
 
 export default function CardEentsCustomized({ _id, name, locaction, creator, dateComplete, day, month, onDelete }: childrensProps) {
-  // Mapeador/Encaminhador de Páginas
-  const router = useRouter()
 
   // useStates
   const [loading, setLoading] = useState(true)
