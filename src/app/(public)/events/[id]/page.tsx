@@ -154,12 +154,6 @@ export default function Events() {
                                       </li>
                                     </ul>
 
-                                    {/* TENHO QUE ARRUMAR ESSA PARTE FUTURAMENTE, PONDO FUNCIONALDIADE */}
-                                    {/* <div className='flex flex-row gap-2'>
-                                      <button><SquarePen className='p-2 rounded-full size-8 bg-tertiary' /></button>
-                                      <button><Share2 className='p-2 rounded-full size-8 bg-tertiary' /></button>
-                                      <button><EllipsisVertical className='p-2 rounded-full size-8 bg-tertiary' /></button>
-                                    </div> */}
                                   </main>
 
                                   <footer className='flex justify-between border-t p-3'>

@@ -16,7 +16,8 @@ interface FormValues {
   name: string;
   email?: string;
   location: string;
-  hour: Date;
+  date: string;       // "yyyy-MM-dd"
+  hour: string;       // "HH:mm"
   typeEvent: 'public' | 'private';
 }
 
@@ -24,10 +25,8 @@ export default function FormPageClient() {
   const router = useRouter()
 
   const handleSubmit = async (data: FormValues) => {
-    console.log("dados q serão enviados para a API: ", data)
-    data.hour = new Date(data.hour);
-    alert("cadastrado com sucesso!")
-    router.push('/')
+    console.log("dados que serão enviados para a API: ", data);
+
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post('/api/createEvent', data, {
@@ -35,9 +34,10 @@ export default function FormPageClient() {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log("resposta da API: ", response.data)
+      console.log("resposta da API: ", response.data);
 
-
+      alert("Cadastrado com sucesso!");
+      router.push('/');
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('erro Axios', error.response?.data || error.message)
@@ -51,7 +51,12 @@ export default function FormPageClient() {
   return (
     <FormWrapper
       defaultValues={{
-        name: "", email: "", location: "", hour: new Date(), typeEvent: 'public'
+        name: "",
+        email: "",
+        location: "",
+        date: new Date().toISOString().slice(0, 10), // yyyy-MM-dd
+        hour: "12:00", // HH:mm
+        typeEvent: 'public'
       }}
       onSubmit={handleSubmit}
       className="w-full lg:w-full h-full flex flex-col gap-5 rounded-xl py-6 shadow-sm text-[#a9a9a9] bg-white/3 backdrop-blur-lg border border-bordercomponents"
@@ -61,7 +66,6 @@ export default function FormPageClient() {
           <CardHeader className="flex flex-col">
             <CardTitle>Crie Seu Próprio evento</CardTitle>
             <CardDescription>Descreva as Informações do seu evento abaixo:</CardDescription>
-
 
             <CardAction className="flex flex-row gap-5 text-xs mt-5">
               <div className="flex gap-2">
@@ -89,7 +93,6 @@ export default function FormPageClient() {
           <CardContent>
             <section>
               <div className="flex flex-col gap-6">
-                {/** Inputs */}
                 {[
                   { id: "name", type: "text", label: "Nome", placeholder: "Digite seu Nome" },
                   { id: "email", type: "email", label: "Email", placeholder: "Digite seu Email" },
@@ -115,6 +118,17 @@ export default function FormPageClient() {
                     type="date"
                     className="border border-bordercomponents outline-none"
                     required
+                    {...methods.register("date")}
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="hour">Hora do Evento</Label>
+                  <Input
+                    id="hour"
+                    type="time"
+                    className="border border-bordercomponents outline-none"
+                    required
                     {...methods.register("hour")}
                   />
                 </div>
@@ -123,9 +137,7 @@ export default function FormPageClient() {
           </CardContent>
 
           <CardFooter>
-            <Button
-              // onClick={goToHome
-              type="submit" className="w-full">
+            <Button type="submit" className="w-full">
               Criar Evento
             </Button>
           </CardFooter>

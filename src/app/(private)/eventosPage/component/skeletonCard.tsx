@@ -4,7 +4,7 @@ interface skeletonProps {
 
 export default function SkeletonCard({ className = '' }: skeletonProps) {
   return (
-    <li className={` flex flex-col justify-between gap-2 md:max-w-[25vw] w-full min-h-[35dvh] p-5 rounded-xl ${className}`}>
+    <div className={` flex flex-col justify-between gap-2 md:max-w-[25vw] w-full min-h-[35dvh] p-5 rounded-xl ${className}`}>
       <div className='flex flex-row flex-wrap gap-5'>
         <div className='min-w-[17rem] w-full md:w-[100rem] lg:max-w-[19rem] h-[23rem] bg-secondary rounded p-0 flex flex-col justify-between pb-4 animate-pulse'>
 
@@ -53,6 +53,6 @@ export default function SkeletonCard({ className = '' }: skeletonProps) {
           </section>
         </div>
       </div>
-    </li>
+    </div>
   );
 }

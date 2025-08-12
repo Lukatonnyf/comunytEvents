@@ -1,3 +1,5 @@
+/**@PEGA_OS_EVENTOS_DA_HOME_PAGE */
+
 import { MongoClient, Db } from 'mongodb'
 import {   NextResponse } from "next/server";
 

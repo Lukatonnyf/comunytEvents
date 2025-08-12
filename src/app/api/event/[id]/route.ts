@@ -1,6 +1,8 @@
 import { MongoClient, Db, ObjectId } from 'mongodb';
 import { NextRequest, NextResponse } from 'next/server';
+import jwt from "jsonwebtoken";
 
+const JWT_SECRET = process.env.JWT_SECRET || 'segredo_ipermega_secreto';
 let cachedDb: Db | null = null;
 
 async function connectToDatabase(uri: string) {
@@ -42,5 +44,34 @@ export async function GET(req: NextRequest) {
       { message: 'Erro ao buscar evento', error: String(error) },
       { status: 500 }
     );
+  }
+}
+
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const url = new URL(req.url);
+    const id = url.pathname.split('/').pop();
+
+    if (!id) {
+      return NextResponse.json({ error: "ID do evento é obrigatório" }, { status: 400 });
+    }
+
+    const eventObjectId = new ObjectId(id);
+
+    const db = await connectToDatabase(process.env.MONGODB_URI!);
+    const collection = db.collection('eventos');
+
+    // Tenta deletar direto pelo _id
+    const result = await collection.deleteOne({ _id: eventObjectId });
+
+    if (result.deletedCount === 1) {
+      return NextResponse.json({ ok: true, message: "Evento deletado com sucesso" }, { status: 200 });
+    } else {
+      return NextResponse.json({ error: "Evento não encontrado" }, { status: 404 });
+    }
+  } catch (err) {
+    console.error("Erro ao deletar evento:", err);
+    return NextResponse.json({ error: "Erro interno no servidor" }, { status: 500 });
   }
 }
