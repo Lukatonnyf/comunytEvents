@@ -70,30 +70,6 @@ export default function CardEentsCustomized({ _id, name, locaction, creator, dat
 
   /**@FUNÇÕES_VALIDADORAS */
   // Função que valida se o token está válido  e se o usuário está logado ou não
-  function validade({ page }: { page: string }) {
-    const token = localStorage.getItem('token');
-
-    if (!token) {
-      return router.push('/login');
-    }
-
-    try {
-      const decoded = jwtDecode<TokenPayload>(token);
-      const agora = Date.now() / 1000;
-
-      if (decoded.exp < agora) {
-        localStorage.removeItem('token');
-        return router.push('/login');
-      }
-
-      // Se `page` já contém o id do evento, manda só ele
-      router.push(`/${page}`);
-
-    } catch {
-      localStorage.removeItem('token');
-      router.push('/login');
-    }
-  }
 
   // useEffect que puxa os dados do BackEnd
   useEffect(() => {
