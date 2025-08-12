@@ -1,8 +1,6 @@
 import { MongoClient, Db, ObjectId } from 'mongodb';
 import { NextRequest, NextResponse } from 'next/server';
-import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET || 'segredo_ipermega_secreto';
 let cachedDb: Db | null = null;
 
 async function connectToDatabase(uri: string) {

@@ -13,7 +13,6 @@ import SkeletonCard from "./skeletonCard";
 
 // Import Icons
 import { Clock, EllipsisVertical, MapPin, Share2, SquarePen, User } from "lucide-react"
-import { deleteModel } from 'mongoose';
 
 
 
@@ -113,11 +112,7 @@ export default function CardEentsCustomized({ _id, name, locaction, creator, dat
 
   /**@FUNÇÕES_QUE_INTERAGEM_COM_O_COMPONENTE */
 
-  // Função que, ao ser chamada, pega os dados do card em que foi clicada, e leva
-  // a uma Página com todos os dados somente do card em que ela foi chamada.
-  const handleClick = () => {
-    validade({ page: `editarEvento/${_id}` })
-  };
+
 
   // funçao dos Inputs do card
   const handlesChange = (id: number, checked: boolean) => {
